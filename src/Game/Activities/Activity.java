@@ -1,5 +1,6 @@
 package Game.Activities;
 
+import Game.Character.Skills;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -10,12 +11,27 @@ public class Activity {
 	private String activityName = "Unnamed activity";
 	public StringProperty labelProp = new SimpleStringProperty();
 	public static final double FREE = 0;
+	public Skills skillsToAdd;
+
+	public Skills getSkillsToAdd() {
+		return skillsToAdd;
+	}
+
+	public void setSkillsToAdd(Skills skillsToAdd) {
+		this.skillsToAdd = skillsToAdd;
+	}
 
 	public Activity(String name, double price, int time) {
 		this.price = price;
 		this.time = time;
 		this.activityName = name;
 		labelProp.set(name);
+		skillsToAdd = new Skills(0);
+	}
+
+	public void addSkill(String skillName, int value) {
+		skillsToAdd.addSkillPoint(skillName, value);
+
 	}
 
 	public String getActivityName() {

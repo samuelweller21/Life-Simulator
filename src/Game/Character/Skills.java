@@ -39,6 +39,19 @@ public class Skills {
 
 	}
 
+	public void addSkills(Skills skillsToAdd) {
+		Iterator<Entry<String, Integer>> itr = skillsToAdd.skills.entrySet().iterator();
+
+		while (itr.hasNext()) {
+			Map.Entry<String, Integer> next = itr.next();
+			if (next.getValue() != 0) {
+				this.skills.put(next.getKey(), this.skills.get(next.getKey()) + next.getValue());
+				Logger.info(next.getKey() + " " + skills.get(next.getKey()) + " -> "
+						+ (skills.get(next.getKey()) + next.getValue()));
+			}
+		}
+	}
+
 	public void addSkillPoint(String skill, int increment) {
 		if (skills.containsKey(skill)) {
 			Logger.info(skill + " " + skills.get(skill) + " -> " + (skills.get(skill) + increment));

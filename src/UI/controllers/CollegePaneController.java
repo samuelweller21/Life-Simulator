@@ -14,26 +14,31 @@ public class CollegePaneController {
 	public Button readButton, courseButton;
 	public AnchorPane collegePane;
 
-	public Activity readActivity = new Activity("Study", 50, 30);
-	public Activity courseActivity = new Activity("Take course", 300, Clock.toTime(2, 0));
+	public Activity readActivity;
+	public Activity courseActivity;
 
 	public HomepageController hp;
 
 	public void init(HomepageController hp) {
 		this.hp = hp;
+
+		// Initialise activities
+		readActivity = new Activity("Study", 50, 30);
+		readActivity.addSkill(Skills.INTELLIGENCE, 1);
+
+		courseActivity = new Activity("Take course", 300, Clock.toTime(2, 0));
+		courseActivity.addSkill(Skills.INTELLIGENCE, 5);
 	}
 
 	public void read() {
 		if (Player.canDo(readActivity)) {
 			Player.doActivity(readActivity);
-			Player.skills.addSkillPoint(Skills.INTELLIGENCE, 1); // Include this in activity struct
 		}
 	}
 
 	public void course() {
 		if (Player.canDo(courseActivity)) {
 			Player.doActivity(courseActivity);
-			Player.skills.addSkillPoint(Skills.INTELLIGENCE, 5); // As above
 		}
 	}
 }

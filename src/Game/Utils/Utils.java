@@ -1,15 +1,15 @@
 package Game.Utils;
+
 import java.util.Random;
 import java.util.stream.DoubleStream;
 
-import Game.Character.Player;
-
 public abstract class Utils {
-	
-	public static final int UNINITIATED_MEMORY = -1;
+
+	public static final int UNINITIATED_MEMORY = 0;
 
 	public static int[] arrayRandomTotalAllocation(int length, int total) {
-		//Returns an integer array of length length with randomly assigned integers totalling total
+		// Returns an integer array of length length with randomly assigned integers
+		// totalling total
 		Random r = new Random();
 		DoubleStream sDouble = r.doubles(length - 1);
 		double[] DoubleN = sDouble.toArray();
@@ -18,7 +18,7 @@ public abstract class Utils {
 			dRunningTotal += DoubleN[i];
 		}
 		for (int i = 0; i < DoubleN.length; i++) {
-			DoubleN[i] = DoubleN[i]/dRunningTotal*(((double)(length-1))/length)*total;
+			DoubleN[i] = DoubleN[i] / dRunningTotal * (((double) (length - 1)) / length) * total;
 		}
 		int[] IntN = new int[length];
 		int runningTotal = 0;
@@ -26,9 +26,9 @@ public abstract class Utils {
 			IntN[i] = (int) Math.round(DoubleN[i]);
 			runningTotal += IntN[i];
 		}
-		
-		IntN[length - 1] = total - runningTotal; 
+
+		IntN[length - 1] = total - runningTotal;
 		return IntN;
 	}
-	
+
 }

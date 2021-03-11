@@ -123,8 +123,13 @@ public class Player {
 		if (Player.canDo(activity)) {
 			Player.pay(activity.getPrice());
 			Player.spendTime(activity.getTime());
+			Player.addSkills(activity.getSkillsToAdd());
 			Logger.info("Doing " + activity.getActivityName());
 		}
+	}
+
+	public static void addSkills(Skills skillsToAdd) {
+		Player.skills.addSkills(skillsToAdd);
 	}
 
 	public static void spendTime(int time) {
