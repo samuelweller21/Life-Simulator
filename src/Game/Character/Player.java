@@ -1,0 +1,212 @@
+package Game.Character;
+
+import java.text.DecimalFormat;
+
+import Game.Activities.Activity;
+import Game.Cars.Cars;
+import Game.Cars.ThreeWheeler;
+import Game.Jobs.Job;
+import Game.Utils.Clock;
+import Game.Utils.Logger;
+import UI.controllers.MainController;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
+public class Player {
+
+	// Controller
+	public static MainController mc;
+
+	// Member variables
+	public static StringProperty name = new SimpleStringProperty();
+	public static IntegerProperty age = new SimpleIntegerProperty(); // TO DO: Update age with clock
+	public static StringProperty s_age = new SimpleStringProperty(); // TO DO: Update age with clock
+
+	public static String getName() {
+		return name.get();
+	}
+
+	public static int getAge() {
+		return age.get();
+	}
+
+	public static double getCash() {
+		return cash.get();
+	}
+
+	// Attribs
+	public static DoubleProperty cash = new SimpleDoubleProperty();
+	public static StringProperty s_cash = new SimpleStringProperty();
+
+	// Skills
+	public static Skills skills;
+
+	// Constants
+	final static private double initialCash = 100;
+	final static private int initialSkillPoints = 10;
+	final static private int initialAge = 18;
+
+	// Items
+	private static Cars cars;
+
+	// Job
+	private static Job job;
+
+	// Clock
+	public static Clock clock;
+
+	public static void player_init(String name) {
+		// Init attrib vars
+		Player.cash.set(initialCash);
+		Player.age.set(initialAge);
+		Player.name.set(name);
+
+		// Init skill vars
+		Player.skills = new Skills(initialSkillPoints);
+
+		// Init item vars
+		Player.cars = new Cars();
+		Player.cars.buy(new ThreeWheeler());
+	}
+
+	public static void init(MainController mc) {
+		Player.clock = new Clock();
+		Player.addInternalBindings();
+		Player.mc = mc;
+	}
+
+	public static void pay(double price) {
+		if (Player.enoughCash(price)) {
+			Player.cash.set(Player.cash.get() - price);
+		} else {
+			Logger.error(
+					"You can requested to make a purchase you cannot afford - Make sure to call _canDo_ before making a purchase");
+		}
+	}
+
+	public static void addInternalBindings() {
+		Player.age.addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				Player.s_age.set(newValue.toString());
+			}
+		});
+		Player.cash.addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				DecimalFormat formatter = new DecimalFormat("0.00");
+				Player.s_cash.set("£" + formatter.format(cash.get()));
+			}
+		});
+
+		// Initialise s_cash and s_age
+		DecimalFormat formatter = new DecimalFormat(".00");
+		Player.s_cash.set("£" + formatter.format(cash.get()));
+		Player.s_age.set(Integer.toString(age.get()));
+
+		Player.clock.init();
+	}
+
+	// TO DO: public Player(String name, int intelligence, int strength ... ) {}
+
+	public static void initSkills(int totalSkillPoints) {
+		// Gen skills vec
+	}
+
+	public static void doActivity(Activity activity) {
+		if (Player.canDo(activity)) {
+			Player.pay(activity.getPrice());
+			Player.spendTime(activity.getTime());
+			Logger.info("Doing " + activity.getActivityName());
+		}
+	}
+
+	public static void spendTime(int time) {
+		if (Player.enoughTime(time)) {
+			Player.clock.tick(time);
+		}
+	}
+
+	public static String print() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Name: " + name + "\n");
+		sb.append("Cash: £" + cash + "\n");
+		sb.append("Skills: " + skills.toString() + "\n");
+		sb.append("Garage: " + cars.toString());
+		return sb.toString();
+	}
+
+	public static void work(int time) {
+		if (Player.enoughTime(time)) {
+			Logger.info(Player.name + " has worked as " + job.getJobName());
+			Player.cash.set(cash.get() + (job.work() * time / 60));
+			Player.clock.tick(time);
+		}
+	}
+
+	public static void setJob(Job job) {
+		Player.job = job;
+	}
+
+	public static Job getJob() {
+		return Player.job;
+	}
+
+	public static boolean enoughCash(double price) {
+		if (price > cash.doubleValue()) {
+			// Can't buy
+			if (!Player.mc.cashFlickerer.isRunning()) {
+				Player.mc.cashFlickerer.restart();
+			} else {
+				Logger.warn("Thread is already running, is user spamming?");
+			}
+			return false;
+		} else {
+			// Can buy
+			return true;
+		}
+	}
+
+	public static boolean enoughTime(int time) {
+		if (!Player.clock.enoughTime(time)) {
+			// Can't buy
+			if (!Player.mc.timeFlickerer.isRunning()) {
+				Player.mc.timeFlickerer.restart();
+			} else {
+				Logger.warn("Thread is already running, is user spamming?");
+			}
+			return false;
+		} else {
+			// Can buy
+			return true;
+		}
+	}
+
+	public static boolean canDo(double price, int time) {
+		if (Player.enoughCash(price) && Player.enoughTime(time)) {
+			Logger.info("Can do that");
+			return true;
+		} else {
+			Logger.info("Can't do that");
+			return false;
+		}
+	}
+
+	public static boolean canDo(Activity activity) {
+		boolean cash = Player.enoughCash(activity.getPrice());
+		boolean time = Player.enoughTime(activity.getTime());
+		if (cash && time) {
+			Logger.info("Can do that - " + activity.getActivityName());
+			return true;
+		} else {
+			Logger.info("Can't do that - " + activity.getActivityName());
+			return false;
+		}
+	}
+}
