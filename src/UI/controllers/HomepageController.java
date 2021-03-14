@@ -13,7 +13,7 @@ public class HomepageController {
 	// Components
 
 	@FXML
-	private Label homeLabel, schoolLabel;
+	private Label homeLabel, schoolLabel, workLabel, collegeLabel;
 
 	@FXML
 	private BorderPane layout;
@@ -21,7 +21,7 @@ public class HomepageController {
 	// Sub panels
 
 	@FXML
-	public HomePaneController homePaneController;
+	public PlayerPaneController playerPaneController;
 	@FXML
 	public WorkPaneController workPaneController;
 	@FXML
@@ -30,18 +30,22 @@ public class HomepageController {
 	public GymPaneController gymPaneController;
 	@FXML
 	public CollegePaneController collegePaneController;
-	// Main controller
+	@FXML
+	public HomePaneController homePaneController;
+	@FXML
+	public BackpackPaneController backpackController;
 
+	// Main controller
 	@FXML
 	public MainController mainController;
 
 	public void init(MainController mc) {
 		this.mainController = mc;
-		homePaneController.init(this);
+		playerPaneController.init(this);
 		infoPaneController.init(this);
 
 		// Initialise workPane
-		FXMLLoader work_loader = null, gym_loader = null, college_loader = null;
+		FXMLLoader work_loader = null, gym_loader = null, college_loader = null, backpack_loader = null;
 		try {
 			work_loader = new FXMLLoader(getClass().getResource("/UI/view/WorkPane.fxml"));
 			work_loader.load();
@@ -49,6 +53,8 @@ public class HomepageController {
 			gym_loader.load();
 			college_loader = new FXMLLoader(getClass().getResource("/UI/view/CollegePane.fxml"));
 			college_loader.load();
+			backpack_loader = new FXMLLoader(getClass().getResource("/UI/view/BackpackPane.fxml"));
+			backpack_loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 			Logger.error("Failed to load a XML file from homepageController");
@@ -60,6 +66,8 @@ public class HomepageController {
 		gymPaneController.init(this);
 		collegePaneController = college_loader.getController();
 		collegePaneController.init(this);
+		backpackController = backpack_loader.getController();
+		backpackController.init(this);
 	}
 
 	public void showHome() {
@@ -83,12 +91,11 @@ public class HomepageController {
 		layout.setCenter(collegePaneController.collegePane);
 	}
 
-	public void doSomething() {
-		// Delete
+	public void showBackpack() {
+		Logger.ui("Setting centre to backpack in homepage");
+		layout.setCenter(backpackController.backpackPane);
 	}
 
-	public void doSomethingElse() {
-		// Delete
-	}
+
 
 }

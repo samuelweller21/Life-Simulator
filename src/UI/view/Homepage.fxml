@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -15,9 +16,9 @@
       <Label alignment="CENTER" text="Label" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <Pane prefHeight="200.0" prefWidth="87.0" BorderPane.alignment="CENTER">
+      <Pane BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox>
                <children>
                   <Label id="homeButton" fx:id="homeLabel" onMouseClicked="#showHome" styleClass="HomepageButtons" stylesheets="@Homepage.css" text="Home" textFill="#138039" underline="true">
                      <font>
@@ -39,14 +40,19 @@
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor></Label>
+                  <Label fx:id="backpackLabel" onMouseClicked="#showBackpack" styleClass="HomepageButtons" text="Backpack">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Label>
                </children>
             </VBox>
          </children>
       </Pane>
    </left>
-   <center>
-      <fx:include fx:id="homePane" source="HomePane.fxml" />
-   </center>
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -73,4 +79,10 @@
          </children>
       </VBox>
    </top>
+   <right>
+      <fx:include fx:id="playerPane" source="PlayerPane.fxml" />
+   </right>
+   <center>
+      <fx:include fx:id="homePane" source="HomePane.fxml" />
+   </center>
 </BorderPane>

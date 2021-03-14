@@ -5,6 +5,8 @@ import java.text.DecimalFormat;
 import Game.Activities.Activity;
 import Game.Cars.Cars;
 import Game.Cars.ThreeWheeler;
+import Game.Items.Item;
+import Game.Items.Items;
 import Game.Jobs.Job;
 import Game.Utils.Clock;
 import Game.Utils.Logger;
@@ -52,8 +54,11 @@ public class Player {
 	final static private int initialSkillPoints = 10;
 	final static private int initialAge = 18;
 
-	// Items
+	// Car
 	private static Cars cars;
+
+	// Items
+	public static Items items;
 
 	// Job
 	private static Job job;
@@ -70,9 +75,14 @@ public class Player {
 		// Init skill vars
 		Player.skills = new Skills(initialSkillPoints);
 
-		// Init item vars
+		// Init cars
 		Player.cars = new Cars();
 		Player.cars.buy(new ThreeWheeler());
+		
+		// Init items
+		items = new Items();
+		items.add(new Item("Mobile Phone", 600, 1));
+		items.add(new Item("Glass", 2, 2));
 	}
 
 	public static void init(MainController mc) {
@@ -195,10 +205,8 @@ public class Player {
 
 	public static boolean canDo(double price, int time) {
 		if (Player.enoughCash(price) && Player.enoughTime(time)) {
-			Logger.info("Can do that");
 			return true;
 		} else {
-			Logger.info("Can't do that");
 			return false;
 		}
 	}
@@ -207,10 +215,8 @@ public class Player {
 		boolean cash = Player.enoughCash(activity.getPrice());
 		boolean time = Player.enoughTime(activity.getTime());
 		if (cash && time) {
-			Logger.info("Can do that - " + activity.getActivityName());
 			return true;
 		} else {
-			Logger.info("Can't do that - " + activity.getActivityName());
 			return false;
 		}
 	}

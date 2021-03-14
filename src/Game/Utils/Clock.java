@@ -39,7 +39,6 @@ public class Clock {
 			minute -= 24 * 60;
 		}
 		updateBindings();
-		Logger.info("Moved forward " + time + " minutes");
 	}
 
 	public void updateBindings() {
@@ -72,20 +71,16 @@ public class Clock {
 
 	public boolean enoughTime(Activity activity) {
 		if (minute + activity.getTime() < END_OF_DAY) {
-			Logger.info("Enough time for - " + activity.getActivityName());
 			return true;
 		} else {
-			Logger.info("Not enough time for - " + activity.getActivityName());
 			return false;
 		}
 	}
 
 	public boolean enoughTime(int time) {
 		if (minute + time < END_OF_DAY) {
-			Logger.info("Enough time for that activity");
 			return true;
 		} else {
-			Logger.info("Not enough time for that activity");
 			return false;
 		}
 	}

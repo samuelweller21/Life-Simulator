@@ -9,4 +9,6 @@ Features that are worth showing off:
 - Monitor integration
 (- Logging system)
 - Git integration
-- Beans/Property Binding
+- Beans/Property Binding#
+- Table view event callback via observable properties in an observale list
+
