@@ -6,7 +6,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import main.java.Game.Character.Player;
-import main.java.Game.Items.ItemsTable;
+import main.java.Game.Items.Item;
 import main.java.Game.Utils.Logger;
 
 public class BackpackPaneController {
@@ -16,7 +16,7 @@ public class BackpackPaneController {
 	public HomepageController hp;
 
 	// To Do Item table view ...
-	public TableView<ItemsTable> itemsTable;
+	public TableView<Item> itemsTable;
 	public TableColumn nameColumn, quantityColumn;
 
 	public void init(HomepageController hp) {

@@ -1,67 +1,86 @@
 package main.java.Game.Items;
 
-import java.util.List;
-
+import javafx.beans.Observable;
+import javafx.beans.property.SimpleStringProperty;
 import main.java.Game.Utils.Logger;
 
 public class Item {
 
-	private String name;
-	private double price;
-	private int quantity;
-
-	public Item(String name, double price, int quantity) {
-		this.name = name;
-		this.price = price;
-		this.quantity = quantity;
-	}
+	SimpleStringProperty name;
+	String s_name;
+	SimpleStringProperty quantity;
+	int s_quantity;
+	SimpleStringProperty price;
 
 	public String getName() {
-		return name;
+		return name.get();
 	}
 
-	public double getPrice() {
-		return price;
+	public String getS_name() {
+		return s_name;
 	}
 
-	public int getQuantity() {
-		return quantity;
+	public String getQuantity() {
+		return quantity.get();
 	}
 
-	public void setName(String name) {
+	public int getS_quantity() {
+		return s_quantity;
+	}
+
+	public String getPrice() {
+		return price.get();
+	}
+
+	public void setName(SimpleStringProperty name) {
 		this.name = name;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setS_name(String s_name) {
+		this.s_name = s_name;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(SimpleStringProperty quantity) {
 		this.quantity = quantity;
 	}
 
-	public String toString() {
-		return name + " - " + quantity + " - £" + price;
+	public void setS_Quantity(int s_quantity) {
+		this.s_quantity = s_quantity;
+		quantity.set(Integer.toString(s_quantity));
 	}
 
-	public Item(List<String> list) {
-		try {
-			this.name = list.get(0);
-			this.price = Double.parseDouble(list.get(1));
-			this.quantity = Integer.parseInt(list.get(2));
-		} catch (Exception e) {
-			Logger.warn("Failed to create an item with name " + list.get(0));
-		}
+	public int getS_Quantity() {
+		return s_quantity;
 	}
 
 	public void remove(int quantity) {
-		if (quantity > this.quantity) {
+		if (quantity > s_quantity) {
 			Logger.warn("In item " + getName() + " you are trying to remove " + quantity + " but only own "
 					+ getQuantity() + " so nothing has been removed");
-
 		} else {
-			this.quantity -= quantity;
+			s_quantity -= quantity;
+			this.quantity.set(Integer.toString(s_quantity));
 		}
+	}
+
+	public void setPrice(SimpleStringProperty price) {
+		this.price = price;
+	}
+
+	public Item(String name, double price, int quantity) {
+		this.name = new SimpleStringProperty(name);
+		s_name = name;
+		this.quantity = new SimpleStringProperty(Integer.toString(quantity));
+		s_quantity = Integer.parseInt(this.quantity.get());
+		this.price = new SimpleStringProperty(Double.toString(price));
+	}
+
+	public Observable quantityPropery() {
+		return quantity;
+	}
+
+	public String toString() {
+		return name.get() + " - " + quantity.get() + " - £" + price.get();
 	}
 
 }

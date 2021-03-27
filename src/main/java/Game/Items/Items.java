@@ -1,5 +1,6 @@
 package main.java.Game.Items;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 import javafx.collections.FXCollections;
@@ -10,23 +11,57 @@ public class Items {
 
 	// Note: Items should be named uniquely
 
-	public ObservableList<ItemsTable> itemsProp;
+	public ObservableList<Item> itemsProp;
+	
+	//Optional global item set
+	
+	public static ObservableList<Item> global;
+	
+	public static void addToGlobal(Item item) {
+		
+	}
+	
+	public static void addToGlobal(Items items) {
+		
+	}
+	
+	public static void removeFromGlobal(Item item) {
+		
+	}
+	
+	public static void removeFromGlobal(Items items) {
+		
+	}
+	
+	public void add(Items items) {
+		Iterator<Item> itr = items.itemsProp.iterator();
+		while (itr.hasNext()) {
+			this.itemsProp.add(itr.next());
+		}
+	}
+	
+	public void remove(Items items) {
+		Iterator<Item> itr = items.itemsProp.iterator();
+		while (itr.hasNext()) {
+			this.itemsProp.remove(itr.next());
+		}
+	}
 
 	public Items() {
 		itemsProp = FXCollections.observableArrayList();
 	}
 
-	public Optional<ItemsTable> getItem(String name) {
+	public Optional<Item> getItem(String name) {
 		return itemsProp.stream().filter(item -> name.equals(item.getName())).findFirst();
 	}
 
-	public void add(ItemsTable item, int quantity) {
+	public void add(Item item, int quantity) {
 		item.setS_Quantity(quantity);
 		add(item);
 	}
 
-	public boolean remove(ItemsTable item) {
-		Optional<ItemsTable> existingItems = itemsProp.stream().filter(it -> item.getName().equals(it.getName()))
+	public boolean remove(Item item) {
+		Optional<Item> existingItems = itemsProp.stream().filter(it -> item.getName().equals(it.getName()))
 				.findFirst();
 		if (!existingItems.isPresent()) {
 			Logger.warn(
@@ -41,7 +76,7 @@ public class Items {
 				int index = itemsProp.indexOf(existingItems.get());
 				int existing_int = existingItems.get().getS_Quantity();
 				int new_int = item.getS_Quantity();
-				ItemsTable newItem = new ItemsTable(item.getName(), Double.parseDouble(item.getPrice()),
+				Item newItem = new Item(item.getName(), Double.parseDouble(item.getPrice()),
 						existing_int - new_int);
 				itemsProp.set(index, newItem);
 				return true;
@@ -49,29 +84,20 @@ public class Items {
 		}
 	}
 
-	public boolean remove(Item item) {
-		return remove(new ItemsTable(item));
-	}
-
 	public boolean remove(Item item, int quantity) {
-		item.setQuantity(quantity);
-		return remove(item);
-	}
-
-	public boolean remove(ItemsTable item, int quantity) {
 		item.setS_Quantity(quantity);
 		return remove(item);
 	}
 
-	public void add(ItemsTable item) {
-		Optional<ItemsTable> existingItems = itemsProp.stream()
+	public void add(Item item) {
+		Optional<Item> existingItems = itemsProp.stream()
 				.filter(it -> (item.getName().equals(it.getName())) & (item.getPrice().equals(it.getPrice())))
 				.findFirst();
 		if (existingItems.isPresent()) {
 			int index = itemsProp.indexOf(existingItems.get());
 			int existing_int = existingItems.get().getS_Quantity();
 			int new_int = item.getS_Quantity();
-			ItemsTable newItem = new ItemsTable(item.getName(), Double.parseDouble(item.getPrice()),
+			Item newItem = new Item(item.getName(), Double.parseDouble(item.getPrice()),
 					existing_int + new_int);
 			itemsProp.set(index, newItem);
 		} else {
@@ -79,18 +105,9 @@ public class Items {
 		}
 	}
 
-	public void add(Item item) {
-		add(new ItemsTable(item));
-	}
-
-	public void add(Item item, int quantity) {
-		item.setQuantity(quantity);
-		add(item);
-	}
-
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		java.util.Iterator<ItemsTable> itr = itemsProp.iterator();
+		java.util.Iterator<Item> itr = itemsProp.iterator();
 
 		while (itr.hasNext()) {
 			sb.append(itr.next().toString());
