@@ -1,7 +1,7 @@
-package Threads;
+package main.java.Game.Threads;
 
-import Game.Utils.Logger;
-import UI.controllers.MainController;
+import main.java.Game.Utils.Logger;
+import main.java.UI.controllers.MainController;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.scene.paint.Color;

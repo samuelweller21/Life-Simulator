@@ -70,7 +70,7 @@ public class Main extends Application {
 		Logger.info("Closing down");
 	}
 
-	public static void main(String[] args) {
+	public static void launcher(String[] args) {
 		launch(args);
 	}
 
