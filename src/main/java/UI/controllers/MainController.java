@@ -32,8 +32,8 @@ public class MainController {
 
 	@FXML
 	public void initialize() {
-		Player.player_init("John Smith");
 		Logger.init(this);
+		Player.player_init("John Smith");
 		initDebug();
 
 		Player.init(this);
@@ -41,6 +41,9 @@ public class MainController {
 		homepageController.init(this);
 		cashFlickerer = new CashFlickerer(this);
 		timeFlickerer = new TimeFlickerer(this);
+		
+		//Temp
+		this.homepageController.showBackpack();
 	}
 
 	public void initDebug() {

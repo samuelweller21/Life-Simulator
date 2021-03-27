@@ -16,6 +16,22 @@ public class Skills {
 	public ObservableList<SkillsTable> skillsProp;
 	public static final String INTELLIGENCE = "Intelligence", STRENGTH = "Strength", HUMOUR = "Humour",
 			CARDIOVASCULAR = "Cardiovascular";
+	
+	public void addIntelligence(int value) {
+		addSkillPoint(Skills.INTELLIGENCE, value);
+	}
+	
+	public void addStrength(int value) {
+		addSkillPoint(Skills.STRENGTH, value);
+	}
+	
+	public void addHumour(int value) {
+		addSkillPoint(Skills.HUMOUR, value);
+	}
+	
+	public void addCardiovascular(int value) {
+		addSkillPoint(Skills.CARDIOVASCULAR, value);
+	}
 
 	// Allocates skill points randomly
 	public Skills(int totalSkillPoints) {
@@ -44,6 +60,28 @@ public class Skills {
 			j++;
 		}
 
+	}
+	
+	public Skills() {
+		// Objects
+		skills = new HashMap<String, Integer>();
+		skillsProp = FXCollections.observableArrayList();
+		// skillsProp = FXCollections.observableArrayList(e -> new Observable[] {
+		// e.valueProperty() });
+
+		// Pre-allocate
+		skills.put(Skills.INTELLIGENCE, Utils.UNINITIATED_MEMORY);
+		skills.put(Skills.STRENGTH, Utils.UNINITIATED_MEMORY);
+		skills.put(Skills.HUMOUR, Utils.UNINITIATED_MEMORY);
+		skills.put(Skills.CARDIOVASCULAR, Utils.UNINITIATED_MEMORY);
+		
+		//Now fill the property value
+		Iterator<Entry<String, Integer>> itr = skills.entrySet().iterator();
+
+		while (itr.hasNext()) {
+			Map.Entry<String, Integer> next = itr.next();
+			skillsProp.add(new SkillsTable(next.getKey(), Integer.toString(skills.get(next.getKey()))));
+		}
 	}
 
 	private void removeAndReplace(ObservableList<SkillsTable> list, String skill, int oldValue, int newValue) {

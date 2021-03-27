@@ -6,6 +6,7 @@ import java.util.stream.DoubleStream;
 public abstract class Utils {
 
 	public static final int UNINITIATED_MEMORY = 0;
+	public static final String RES_URL = "src/main/resources";
 
 	public static int[] arrayRandomTotalAllocation(int length, int total) {
 		// Returns an integer array of length length with randomly assigned integers

@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import main.java.Game.Utils.DoAfterInit;
 import main.java.Game.Utils.Logger;
 import main.java.UI.controllers.MainController;
 
@@ -62,6 +63,7 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		DoAfterInit.run();
 	}
 
 	@Override

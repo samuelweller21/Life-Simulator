@@ -19,7 +19,7 @@ public class Item {
 	public String getS_name() {
 		return s_name;
 	}
-
+	
 	public String getQuantity() {
 		return quantity.get();
 	}
