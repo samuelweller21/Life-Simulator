@@ -45,6 +45,7 @@ public class PlayerPaneController {
 		valueColumn = new TableColumn("Value");
 		valueColumn.setSortable(false);
 		valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+		Player.skills.sort();
 		skillTable.setItems(Player.skills.skillsProp);
 		skillTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		skillTable.getColumns().addAll(skillsColumn, valueColumn);

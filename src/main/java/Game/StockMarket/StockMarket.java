@@ -15,6 +15,10 @@ public class StockMarket {
 	private double averageVariance;
 	private int duplicateAvoider;
 	
+	public String getName() {
+		return marketName;
+	}
+	
 	public StockMarket(String name, double avgGrowth, double vol) {
 		this.marketName = name;
 		this.averageGrowth = avgGrowth/100;

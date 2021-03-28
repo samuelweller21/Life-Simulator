@@ -29,6 +29,10 @@ public class InfoPaneController {
 //		if (!Player.items.remove(mobileItem)) {
 //			System.out.println("You don't have that item");
 //		}
+		Player.skills.addHumour(10);
+		Player.skills.addCardiovascular(10);
+		Player.skills.addStrength(10);
+		Player.skills.addIntelligence(10);
 	}
 
 }

@@ -2,9 +2,7 @@ package main.java.Game.Items;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.Optional;
 
@@ -21,7 +19,7 @@ public class Items {
 	
 	//Optional global item set
 	
-	public static ObservableList<Item> global = FXCollections.observableArrayList();;
+	public static ObservableList<Item> global = FXCollections.observableArrayList();
 	
 	public void addAsNamedList(String name) {
 		addFromURL(Utils.RES_URL + "/ItemLists/" + name + ".csv");
@@ -46,11 +44,12 @@ public class Items {
 						itemsProp.add(item);
 					}
 				}
-				
+				reader.close();
 			} catch (Exception e) {
 				Logger.warn("Failed reading a item list - " + url);
 				e.printStackTrace();
 			} 
+			
 		}
 	}
 	
@@ -77,6 +76,7 @@ public class Items {
 						addToGlobal(item);
 					}
 				}
+				reader.close();
 				
 			} catch (Exception e) {
 				Logger.warn("Failed reading a item list - " + url);

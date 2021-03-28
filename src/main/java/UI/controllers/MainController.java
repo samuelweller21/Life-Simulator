@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.java.Game.Character.Player;
-import main.java.Game.Jobs.BinCollector;
 import main.java.Game.Main.Main;
 import main.java.Game.Threads.CashFlickerer;
 import main.java.Game.Threads.TimeFlickerer;
@@ -37,7 +36,6 @@ public class MainController {
 		initDebug();
 
 		Player.init(this);
-		Player.setJob(new BinCollector());
 		homepageController.init(this);
 		cashFlickerer = new CashFlickerer(this);
 		timeFlickerer = new TimeFlickerer(this);

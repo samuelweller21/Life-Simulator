@@ -2,7 +2,6 @@ package main.java.Game.Main;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -46,7 +45,6 @@ public class Main extends Application {
 
 			} else {
 
-				ObservableList<Screen> screens = Screen.getScreens();
 				Rectangle2D primaryScreen = Screen.getPrimary().getBounds();
 
 				primaryStage.setWidth(0.8 * primaryScreen.getWidth());

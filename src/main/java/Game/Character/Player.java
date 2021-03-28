@@ -61,7 +61,7 @@ public class Player {
 	public static Items items;
 
 	// Job
-	private static Job job;
+	public static Job job;
 
 	// Clock
 	public static Clock clock;
@@ -78,6 +78,9 @@ public class Player {
 		// Init cars
 		Player.cars = new Cars();
 		Player.cars.buy(new ThreeWheeler());
+		
+		//Init job
+		job = new Job();
 		
 		// Init items
 		items = new Items();
@@ -166,7 +169,9 @@ public class Player {
 	}
 
 	public static void setJob(Job job) {
-		Player.job = job;
+		Player.job.setName(job.getName());
+		Player.job.setWage(job.getS_wage());
+		//Player.job.setReqSkills(job.getReqSkills());
 	}
 
 	public static Job getJob() {

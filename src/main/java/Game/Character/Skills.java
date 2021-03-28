@@ -1,5 +1,6 @@
 package main.java.Game.Character;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -32,6 +33,53 @@ public class Skills {
 	public void addCardiovascular(int value) {
 		addSkillPoint(Skills.CARDIOVASCULAR, value);
 	}
+	
+	public void setIntelligence(int value) {
+		setSkillPoint(Skills.INTELLIGENCE, value);
+	}
+	
+	public void setStrength(int value) {
+		setSkillPoint(Skills.STRENGTH, value);
+	}
+	
+	public void setHumour(int value) {
+		setSkillPoint(Skills.HUMOUR, value);
+	}
+	
+	public void setCardiovascular(int value) {
+		setSkillPoint(Skills.CARDIOVASCULAR, value);
+	}
+	
+	public void setSkillPoint(String skill, int value) {
+		if (skills.containsKey(skill)) {
+			Logger.info(skill + " " + skills.get(skill) + " -> " + value);
+			int prev = skills.get(skill);
+			skills.put(skill, value);
+			removeAndReplace(skillsProp, skill, prev, this.skills.get(skill));
+		} else {
+			Logger.error("There is no skill known as " + skill);
+		}
+	}
+	
+	public int getSkillPoint(String skill) {
+		return skills.get(skill);
+	}
+	
+	public int getIntelligence() {
+		return getSkillPoint(Skills.INTELLIGENCE);
+	}
+	
+	public int getStrength() {
+		return getSkillPoint(Skills.STRENGTH);
+	}
+	
+	public int getHumour() {
+		return getSkillPoint(Skills.HUMOUR);
+	}
+	
+	public int getCardiovascular() {
+		return getSkillPoint(Skills.CARDIOVASCULAR);
+	}
 
 	// Allocates skill points randomly
 	public Skills(int totalSkillPoints) {
@@ -43,10 +91,10 @@ public class Skills {
 		// e.valueProperty() });
 
 		// Pre-allocate
+		skills.put(Skills.CARDIOVASCULAR, Utils.UNINITIATED_MEMORY);
+		skills.put(Skills.HUMOUR, Utils.UNINITIATED_MEMORY);
 		skills.put(Skills.INTELLIGENCE, Utils.UNINITIATED_MEMORY);
 		skills.put(Skills.STRENGTH, Utils.UNINITIATED_MEMORY);
-		skills.put(Skills.HUMOUR, Utils.UNINITIATED_MEMORY);
-		skills.put(Skills.CARDIOVASCULAR, Utils.UNINITIATED_MEMORY);
 
 		// Get values
 		int[] skillPointAssignment = Utils.arrayRandomTotalAllocation(skills.size(), totalSkillPoints);
@@ -70,10 +118,10 @@ public class Skills {
 		// e.valueProperty() });
 
 		// Pre-allocate
+		skills.put(Skills.CARDIOVASCULAR, Utils.UNINITIATED_MEMORY);
+		skills.put(Skills.HUMOUR, Utils.UNINITIATED_MEMORY);
 		skills.put(Skills.INTELLIGENCE, Utils.UNINITIATED_MEMORY);
 		skills.put(Skills.STRENGTH, Utils.UNINITIATED_MEMORY);
-		skills.put(Skills.HUMOUR, Utils.UNINITIATED_MEMORY);
-		skills.put(Skills.CARDIOVASCULAR, Utils.UNINITIATED_MEMORY);
 		
 		//Now fill the property value
 		Iterator<Entry<String, Integer>> itr = skills.entrySet().iterator();
@@ -89,7 +137,20 @@ public class Skills {
 		// Find the value in the skillsProp list
 		skillsProp.stream().filter(st -> skill.equals(st.getSSkill())).findFirst().orElse(null)
 				.setValue(Integer.toString(newValue));
+		
+		//Reorder
+		Comparator<SkillsTable> comparator = Comparator.comparing(SkillsTable::getSkill);
+		FXCollections.sort(skillsProp, comparator);
 
+		System.out.println(skillsProp.toString());
+	}
+	
+	public void sort() {
+		//Reorder
+		Comparator<SkillsTable> comparator = Comparator.comparing(SkillsTable::getSkill);
+		FXCollections.sort(skillsProp, comparator);
+
+		System.out.println(skillsProp.toString());
 	}
 
 	public void addSkills(Skills skillsToAdd) {
@@ -120,9 +181,22 @@ public class Skills {
 	public HashMap<String, Integer> getSkills() {
 		return skills;
 	}
+	
+	public boolean isSufficient(Skills reqSkills) {
+		Iterator<String> itr = skills.keySet().iterator();
+		while (itr.hasNext()) {
+			String currentKey = itr.next();
+			if (skills.get(currentKey) < reqSkills.skills.get(currentKey)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	@Override
 	public String toString() {
 		return skills.toString();
 	}
+	
+	
 }

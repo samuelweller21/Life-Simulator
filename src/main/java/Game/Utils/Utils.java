@@ -1,12 +1,19 @@
 package main.java.Game.Utils;
 
+import java.text.DecimalFormat;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.stream.DoubleStream;
+
+import main.java.Game.Character.Player;
+import main.java.Game.Jobs.Job;
 
 public abstract class Utils {
 
 	public static final int UNINITIATED_MEMORY = 0;
 	public static final String RES_URL = "src/main/resources";
+	private static final double WAGE_CONST = 5;
+	private static final double WAGE_FACTOR = 0.03;
 
 	public static int[] arrayRandomTotalAllocation(int length, int total) {
 		// Returns an integer array of length length with randomly assigned integers
@@ -31,5 +38,20 @@ public abstract class Utils {
 		IntN[length - 1] = total - runningTotal;
 		return IntN;
 	}
+	
+	public static double getJobWage(Job job) {
+		//Wages should grow exponentially.  Assume wage = WAGE_CONST + WAGE_FACTOR*exp(sum(reqSkills))
+		int sum = 0;
+		Iterator itr = job.getReqSkills().getSkills().keySet().iterator();
+		while (itr.hasNext()) {
+			sum += job.getReqSkills().getSkills().get(itr.next());
+		}
+		return WAGE_CONST + Math.exp(WAGE_FACTOR*sum);
+	}
 
+	public static String formatAsPrice(Double price) {
+		DecimalFormat formatter = new DecimalFormat("0.00");
+		return formatter.format(price);
+	}
+	
 }

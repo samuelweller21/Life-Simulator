@@ -2,7 +2,6 @@ package main.java.Game.Utils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
 import java.util.TreeMap;
@@ -79,7 +78,7 @@ public class Logger {
 	public static String getDebugText() {
 
 		StringBuilder sb = new StringBuilder();
-		NavigableMap desc = Logger.log.descendingMap();
+		NavigableMap<Integer, Log> desc = Logger.log.descendingMap();
 		Iterator<Entry<Integer, Log>> itr = desc.entrySet().iterator();
 
 		// Form a list of acceptable levels
@@ -105,7 +104,7 @@ public class Logger {
 
 		// Push whitelisted messages
 		while (itr.hasNext()) {
-			Map.Entry entry = itr.next();
+			Entry<Integer, Log> entry = itr.next();
 			Log line = (Log) entry.getValue();
 			if (whitelist.contains(line.getLevel())) {
 				sb.append(

@@ -5,16 +5,31 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import main.java.Game.Character.Skills;
+import main.java.Game.Items.Item;
 import main.java.Game.Utils.Logger;
 import main.java.Game.Utils.Utils;
 
 public class Jobs {
 
-	public static ArrayList<Job> globalJobs = new ArrayList<Job>();;
+	public static ObservableList<Job> globalJobs = FXCollections.observableArrayList();
 	public ArrayList<Job> jobs;
 	public String name;
+	
+	public static void addToGlobal(Jobs jobs) {
+		Iterator<Job> itr = jobs.jobs.iterator();
+		while (itr.hasNext()) {
+			globalJobs.add(itr.next());
+		}
+	}
+	
+	public static Job getJobFromGlobal(String name) {
+		return globalJobs.stream().filter(j -> name.equals(j.getName())).findFirst().get();
+	}
 	
 	public void getJobsFromURL(String url) {
 		File file = new File(url);
@@ -36,7 +51,11 @@ public class Jobs {
 						if (colHeadings[i].equals("Name")) {
 							job.setName(data[i]);
 						} else if (colHeadings[i].equals("Wage")) {
-							job.setWage(Double.parseDouble(data[i]));
+							try {
+								job.setWage(Double.parseDouble(data[i]));
+							} catch (Exception e) {
+								job.setWage(0);
+							}
 						} else if (colHeadings[i].equals(Skills.INTELLIGENCE)) {
 							skills.addIntelligence(Integer.parseInt(data[i]));
 						} else if (colHeadings[i].equals(Skills.STRENGTH)) {
@@ -48,8 +67,12 @@ public class Jobs {
 						}
 					}
 					job.setReqSkills(skills);
+					if (job.getWage().equals("0.00")) {
+						job.setWage(Utils.getJobWage(job));
+					}
 					jobs.add(job);
 				}
+				reader.close();
 			} catch (Exception e) {
 				Logger.warn("Failed reading a item list - " + url);
 				e.printStackTrace();

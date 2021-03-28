@@ -77,7 +77,6 @@ public class HomepageController {
 
 	public void showWork() {
 		Logger.ui("Setting centre to work in homepage");
-		workPaneController.updateDetails();
 		layout.setCenter(workPaneController.workPane);
 	}
 
