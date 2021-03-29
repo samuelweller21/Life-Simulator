@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UI.controllers.InfoPaneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UI.controllers.InfoPaneController">
    <children>
       <HBox fx:id="infoPaneHBox" fillHeight="false" minHeight="-Infinity" minWidth="-Infinity">
          <children>
@@ -40,10 +40,15 @@
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding></Label>
-            <Button fx:id="tryButton" mnemonicParsing="false" onAction="#doTry" text="Try">
-               <padding>
+            <Button fx:id="cheatSkillsButton" mnemonicParsing="false" onAction="#cheatSkills" text="Cheat - Give skill points">
+               <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding></Button>
+               </HBox.margin></Button>
+            <Button fx:id="cheatMoneyButton" mnemonicParsing="false" onAction="#cheatMoney" text="Cheat - Give $$$">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

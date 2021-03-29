@@ -13,6 +13,8 @@ import javafx.beans.value.ObservableValue;
 import main.java.Game.Activities.Activity;
 import main.java.Game.Cars.Cars;
 import main.java.Game.Cars.ThreeWheeler;
+import main.java.Game.House.House;
+import main.java.Game.House.Houses;
 import main.java.Game.Items.Item;
 import main.java.Game.Items.Items;
 import main.java.Game.Jobs.Job;
@@ -65,6 +67,9 @@ public class Player {
 
 	// Clock
 	public static Clock clock;
+	
+	//House
+	public static House home;
 
 	public static void player_init(String name) {
 		// Init attrib vars
@@ -100,6 +105,14 @@ public class Player {
 		} else {
 			Logger.error(
 					"You can requested to make a purchase you cannot afford - Make sure to call _canDo_ before making a purchase");
+		}
+	}
+	
+	public static void buyHouse(House house) {
+		if (enoughCash(house.getPrice())) {
+			Player.home = house;
+			Player.mc.homepageController.homePaneController.homeImage.setImage(house.getImage());
+			Player.cash.subtract(house.getPrice());
 		}
 	}
 
@@ -206,6 +219,10 @@ public class Player {
 			// Can buy
 			return true;
 		}
+	}
+	
+	public static void giveMoney(double money) {
+		Player.cash.set(Player.cash.get() + money);
 	}
 
 	public static boolean canDo(double price, int time) {

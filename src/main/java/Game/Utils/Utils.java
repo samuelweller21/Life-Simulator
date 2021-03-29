@@ -5,7 +5,10 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.stream.DoubleStream;
 
-import main.java.Game.Character.Player;
+import javafx.geometry.HPos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import main.java.Game.Activities.Activity;
 import main.java.Game.Jobs.Job;
 
 public abstract class Utils {
@@ -52,6 +55,15 @@ public abstract class Utils {
 	public static String formatAsPrice(Double price) {
 		DecimalFormat formatter = new DecimalFormat("0.00");
 		return formatter.format(price);
+	}
+	
+	public static void addActivityToLabel(Label label, Activity activity) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(activity.getActivityName() + "\n");
+		sb.append("Cost: £" + activity.getPrice() + "\n");
+		sb.append("Duration: " + activity.getTime() + " minutes \n");
+		label.setText(sb.toString());
+		GridPane.setHalignment(label, HPos.RIGHT);
 	}
 	
 }

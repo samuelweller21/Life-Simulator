@@ -5,6 +5,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import main.java.Game.Character.Player;
 import main.java.Game.Items.Item;
 import main.java.Game.Utils.Logger;
@@ -12,6 +13,8 @@ import main.java.Game.Utils.Logger;
 public class BackpackPaneController {
 	@FXML
 	public AnchorPane backpackPane;
+	@FXML
+	public VBox backpackBox;
 
 	public HomepageController hp;
 
@@ -31,9 +34,10 @@ public class BackpackPaneController {
 		quantityColumn.setCellValueFactory(new PropertyValueFactory("quantity"));
 		itemsTable.setItems(Player.items.itemsProp);
 		itemsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		nameColumn.setSortable(false);
+		quantityColumn.setSortable(false);
 		itemsTable.getColumns().addAll(nameColumn, quantityColumn);
-		backpackPane.getChildren().add(itemsTable);
-		backpackPane.autosize();
+		backpackBox.getChildren().add(itemsTable);
 	}
 
 }

@@ -1,11 +1,13 @@
 package main.java.UI.controllers;
 
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import main.java.Game.Character.Player;
 import main.java.Game.Jobs.Job;
@@ -19,13 +21,17 @@ public class WorkPaneController {
 	@FXML
 	Pane workPane;
 	@FXML
-	Label jobLabel;
-	@FXML
-	Label payLabel;
+	Label jobLabel, payLabel, work_jobLabel, work_payLabel;
 	@FXML 
 	TableView jobsTable;
 	@FXML
 	Button applyButton;
+	
+	@FXML
+	HomepageController homepageController;
+	
+	private Jobs jobsList;
+	public TableColumn nameColumn, wageColumn, intelligenceColumn, strengthColumn, humourColumn, cardiovascularColumn;
 	
 	public void apply() {
 		Job job = null;
@@ -48,13 +54,6 @@ public class WorkPaneController {
 			}
 		}
 	}
-	
-	private Jobs jobsList;
-	public TableColumn nameColumn, wageColumn, intelligenceColumn, strengthColumn, humourColumn, cardiovascularColumn;
-	
-	
-	@FXML
-	HomepageController homepageController;
 
 	public void init(HomepageController homepageController) {
 		Logger.initialise("Initializing hompage controller in workpane controller");
@@ -68,6 +67,9 @@ public class WorkPaneController {
 		jobsList = new Jobs();
 		jobsList.getJobsFromNamedList("Jobs");
 		Jobs.addToGlobal(jobsList);
+		
+		GridPane.setHalignment(work_jobLabel, HPos.RIGHT);
+		GridPane.setHalignment(work_payLabel, HPos.RIGHT);
 		
 		// Init columns
 		nameColumn = new TableColumn("Name");

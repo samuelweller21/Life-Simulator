@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import main.java.Game.Character.Player;
+import main.java.Game.Main.Main;
+import main.java.Game.Utils.Logger;
 
 public class InfoPaneController {
 
@@ -13,7 +15,7 @@ public class InfoPaneController {
 	@FXML
 	public HBox infoPaneHBox;
 	@FXML
-	public Button tryButton;
+	public Button cheatSkillsButton, cheatMoneyButton;
 
 	HomepageController homepageController;
 
@@ -22,6 +24,10 @@ public class InfoPaneController {
 		dayLabel.textProperty().bind(Player.clock.dayProp);
 		timeLabel.textProperty().bind(Player.clock.minuteProp);
 		cashLabel.textProperty().bind(Player.s_cash);
+		if (!Main.CHEAT) {
+			infoPaneHBox.getChildren().remove(cheatSkillsButton);
+			infoPaneHBox.getChildren().remove(cheatMoneyButton);
+		}
 	}
 	
 	public void doTry() {
@@ -34,5 +40,20 @@ public class InfoPaneController {
 		Player.skills.addStrength(10);
 		Player.skills.addIntelligence(10);
 	}
+	
+	public void cheatSkills() {
+		Player.skills.addHumour(10);
+		Player.skills.addCardiovascular(10);
+		Player.skills.addStrength(10);
+		Player.skills.addIntelligence(10);
+		Logger.warn("Player is cheating skills");
+	}
+	
+	public void cheatMoney() {
+		Player.giveMoney(1000);
+		Logger.warn("Player is cheating money");
+	}
+	
+	
 
 }

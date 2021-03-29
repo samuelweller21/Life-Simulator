@@ -141,18 +141,13 @@ public class Skills {
 		//Reorder
 		Comparator<SkillsTable> comparator = Comparator.comparing(SkillsTable::getSkill);
 		FXCollections.sort(skillsProp, comparator);
-
-		System.out.println(skillsProp.toString());
 	}
 	
 	public void sort() {
-		//Reorder
 		Comparator<SkillsTable> comparator = Comparator.comparing(SkillsTable::getSkill);
 		FXCollections.sort(skillsProp, comparator);
-
-		System.out.println(skillsProp.toString());
 	}
-
+	
 	public void addSkills(Skills skillsToAdd) {
 		Iterator<Entry<String, Integer>> itr = skillsToAdd.skills.entrySet().iterator();
 

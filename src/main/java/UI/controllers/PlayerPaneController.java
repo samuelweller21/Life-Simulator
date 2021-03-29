@@ -26,6 +26,9 @@ public class PlayerPaneController {
 	// Components
 	@FXML
 	private Label nameLabel, ageLabel, cashLabel;
+	@FXML
+	public TableView skillsTable;
+	
 	public TableView<SkillsTable> skillTable;
 	public TableColumn skillsColumn, valueColumn;
 	@FXML
@@ -35,10 +38,10 @@ public class PlayerPaneController {
 		Logger.initialise("Initializing playerpane controller in homepane controller");
 		this.homepageController = homepageController;
 		nameLabel.textProperty().bind(Player.name);
+		ageLabel.textProperty().bind(Player.s_age);
 		cashLabel.textProperty().bind(Player.s_cash);
 
 		// Init columns
-		skillTable = new TableView<>();
 		skillsColumn = new TableColumn("Skills");
 		skillsColumn.setSortable(false);
 		skillsColumn.setCellValueFactory(new PropertyValueFactory<>("skill"));
@@ -46,15 +49,10 @@ public class PlayerPaneController {
 		valueColumn.setSortable(false);
 		valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
 		Player.skills.sort();
-		skillTable.setItems(Player.skills.skillsProp);
-		skillTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		skillTable.getColumns().addAll(skillsColumn, valueColumn);
-		skillTable.setFocusTraversable(false);
-		playerPaneLayout.setMargin(skillTable, new Insets(5));
-
-		// Add to layout
-		playerPaneLayout.add(skillTable, 0, 3, 2, 1);
-		playerPaneLayout.autosize();
+		skillsTable.setItems(Player.skills.skillsProp);
+		skillsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		skillsTable.getColumns().addAll(skillsColumn, valueColumn);
+		skillsTable.setFocusTraversable(false);
 
 	}
 

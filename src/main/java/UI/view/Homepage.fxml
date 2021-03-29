@@ -3,20 +3,41 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="layout" stylesheets="@Homepage.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UI.controllers.HomepageController">
+<BorderPane fx:id="layout" stylesheets="@Homepage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UI.controllers.HomepageController">
    <bottom>
       <Label alignment="CENTER" text="Label" BorderPane.alignment="CENTER" />
    </bottom>
+   <top>
+      <VBox fx:id="menuBox" BorderPane.alignment="CENTER">
+         <children>
+            <fx:include fx:id="infoPane" source="InfoPane.fxml" />
+            <Separator prefWidth="200.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Separator>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <fx:include fx:id="homePane" source="HomePane.fxml" />
+   </center>
+   <right>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <fx:include fx:id="playerPane" source="PlayerPane.fxml" />
+         </children>
+      </HBox>
+   </right>
    <left>
-      <Pane BorderPane.alignment="CENTER">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
             <VBox>
                <children>
@@ -37,21 +58,24 @@
                      </cursor>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding></Label>
-                  <Label onMouseClicked="#showGym" styleClass="HomepageButtons" stylesheets="@Homepage.css" text="Gym">
+                     </padding>
+                  </Label>
+                  <Label fx:id="gymLabel" onMouseClicked="#showGym" styleClass="HomepageButtons" stylesheets="@Homepage.css" text="Gym">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding></Label>
+                     </padding>
+                  </Label>
                   <Label fx:id="workLabel" onMouseClicked="#showWork" styleClass="HomepageButtons" text="Work">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding></Label>
+                     </padding>
+                  </Label>
                   <Label fx:id="backpackLabel" onMouseClicked="#showBackpack" styleClass="HomepageButtons" text="Backpack">
                      <opaqueInsets>
                         <Insets />
@@ -65,42 +89,12 @@
                   </Label>
                </children>
             </VBox>
+            <Separator orientation="VERTICAL">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Separator>
          </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Pane>
+      </HBox>
    </left>
-   <top>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-            <MenuBar>
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-            <fx:include fx:id="infoPane" source="InfoPane.fxml" />
-         </children>
-      </VBox>
-   </top>
-   <right>
-      <fx:include fx:id="playerPane" source="PlayerPane.fxml" />
-   </right>
-   <center>
-      <fx:include fx:id="homePane" source="HomePane.fxml" />
-   </center>
 </BorderPane>
