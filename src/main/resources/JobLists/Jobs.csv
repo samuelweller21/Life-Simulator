@@ -2,3 +2,20 @@ Name,Wage,Intelligence,Strength,Humour,Cardiovascular
 Gardener,8,15,10,5,10
 Bin Collector,5,0,0,0,0
 Paper Round,NA,0,0,0,10
+Milkman,NA,10,5,5,5
+Shop Assistant,NA,20,5,10,5
+Police Officer,NA,30,30,20,30
+Teacher,NA,50,5,20,10
+Athlete,NA,20,50,20,50
+Chef,NA,30,20,20,20
+Taxi Driver,NA,30,20,20,10
+Banker,NA,100,20,40,30
+Doctor,NA,200,40,40,40
+Actor,NA,20,100,100,100
+Scientist,NA,200,0,0,0
+Influencer,NA,10,40,100,40
+Writer,NA,50,20,50,20
+Astronaut,NA,100,100,100,100
+Builder,NA,30,50,20,40
+Pilot,NA,100,30,40,30
+Mechanic,NA,30,50,30,40
