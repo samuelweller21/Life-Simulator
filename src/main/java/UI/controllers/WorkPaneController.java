@@ -50,7 +50,7 @@ public class WorkPaneController {
 				Player.setJob(job);
 			} else {
 				//Set up info pane and say you don't have the required skills
-				Logger.info("You do not have the required skills for this job");
+				Logger.player("You do not have the required skills for this job");
 			}
 		}
 	}

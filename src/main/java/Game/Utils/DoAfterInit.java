@@ -13,8 +13,6 @@ public class DoAfterInit {
 
 	public static void run() {
 		
-		//N.b. Should probably put all this on another thread for speedier loading
-		
 		//Load items
 		
 		Items coolItems = new Items();
