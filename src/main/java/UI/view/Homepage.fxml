@@ -14,7 +14,7 @@
       <VBox fx:id="menuBox" BorderPane.alignment="CENTER">
          <children>
             <fx:include fx:id="infoPane" source="InfoPane.fxml" />
-            <Separator prefWidth="200.0">
+            <Separator>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -85,6 +85,17 @@
                      </padding>
                   </Label>
                   <Label fx:id="backpackLabel" onMouseClicked="#showBackpack" styleClass="HomepageButtons" text="Backpack">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="estateLabel" onMouseClicked="#showEstate" styleClass="HomepageButtons" text="Estate Agent">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import main.java.Game.Activities.Activity;
+import main.java.Game.Character.Player;
 
 public class Clock {
 
@@ -26,6 +27,10 @@ public class Clock {
 		day++;
 		minute = 7 * 60;
 		updateBindings();
+		if (Player.age.get() > 99) {
+			PlayerLog.log("Congrulations on finishing - You may continue playing");
+			//Could remove homepage and add a blank page showing stats and say something like "you are dead - thanks for playing"
+		}
 	}
 
 	public void init() {

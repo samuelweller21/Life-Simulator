@@ -46,6 +46,9 @@ public class DoAfterInit {
 		Houses houses = new Houses();
 		houses.addToGlobalAsNamedList("Houses");
 		Player.mc.homepageController.homePaneController.homeImage.setImage(Houses.getFromGlobal("Homeless").get().getImage());
+		Player.mc.homepageController.estateAgentController.loadHouses();
+		
+		//Testing
 	}
 	
 }

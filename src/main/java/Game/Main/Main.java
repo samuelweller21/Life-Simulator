@@ -17,7 +17,7 @@ import main.java.UI.controllers.MainController;
 public class Main extends Application {
 
 	public static final boolean DEBUG = true;
-	public static final boolean CHEAT = false;
+	public static final boolean CHEAT = true;
 	public Parent root = null;
 	public MainController mc;
 	public Stage primaryStage;
@@ -40,18 +40,18 @@ public class Main extends Application {
 
 				Rectangle2D screen = Screen.getPrimary().getBounds();
 				primaryStage.setWidth(0.8 * screen.getWidth());
-				primaryStage.setHeight(0.6 * screen.getHeight());
+				primaryStage.setHeight(0.8 * screen.getHeight());
 				primaryStage.setX(0.1 * screen.getWidth());
-				primaryStage.setY(0.2 * screen.getHeight());
+				primaryStage.setY(0.1 * screen.getHeight());
 
 			} else {
 
 				Rectangle2D primaryScreen = Screen.getPrimary().getBounds();
 
 				primaryStage.setWidth(0.8 * primaryScreen.getWidth());
-				primaryStage.setHeight(0.6 * primaryScreen.getHeight());
+				primaryStage.setHeight(0.8 * primaryScreen.getHeight());
 				primaryStage.setX(0.1 * primaryScreen.getWidth());
-				primaryStage.setY(0.2 * primaryScreen.getHeight());
+				primaryStage.setY(0.1 * primaryScreen.getHeight());
 
 			}
 			primaryStage.setOnCloseRequest(e -> Platform.exit());
@@ -64,7 +64,7 @@ public class Main extends Application {
 		}
 		DoAfterInit.run();
 	}
-
+	
 	@Override
 	@FXML
 	public void stop() {

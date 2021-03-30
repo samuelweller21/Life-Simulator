@@ -27,11 +27,12 @@ public class House {
 
 		//Load image
 		try {
-			img = new Image(new FileInputStream(url));
+			img = new Image(new FileInputStream(url), 100, 100, false, false);
 		} catch (FileNotFoundException e) {
 			Logger.warn("Could not load image " + name + " from " + url);
 			e.printStackTrace();
-		}		
+		}			
+		
 	}
 	
 	public Image getImage() {
@@ -71,12 +72,13 @@ public class House {
 	public void loadImage(String url) {
 		this.url = url;
 		try {
-			this.img = new Image(new FileInputStream(url));
+			this.img = new Image(new FileInputStream(url), 100, 100, false, false);
 		} catch (FileNotFoundException e) {
 			Logger.warn("Could not load image " + name + " from " + url);
 			e.printStackTrace();
 		}		
 	}
+	
 	
 	public void loadImageFromList(String name) {
 		File file;
@@ -86,9 +88,13 @@ public class House {
 			if (!file.exists()) {
 				url = Utils.RES_URL + "/images/Houses/" + name + ".jpg";
 				file = new File(url);
-				if (file.exists()) {
-					loadImage(url);
+				if (!file.exists()) {
+					url = Utils.RES_URL + "/images/Houses/" + name + ".svg";
+					file = new File(url);
 				}
+			}
+			if (file.exists()) {
+				loadImage(url);
 			}
 		} catch (Exception e) {
 			Logger.warn("Could not find file " + name);

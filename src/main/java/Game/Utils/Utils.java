@@ -66,4 +66,17 @@ public abstract class Utils {
 		GridPane.setHalignment(label, HPos.RIGHT);
 	}
 	
+	public static String largePriceFormatter(double price) {
+		if (price == 0) {
+			return "0";
+		}
+		DecimalFormat formatter = new DecimalFormat("00,000,000");
+		String s = formatter.format(price);
+		//Remove leading zeroes
+		while ((s.substring(0,1).equals("0")) || (s.substring(0,1).equals(","))) {
+			s = s.substring(1, s.length());
+		}
+		return s;
+	}
+	
 }

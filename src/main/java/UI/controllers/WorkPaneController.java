@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import main.java.Game.Character.Player;
 import main.java.Game.Jobs.Job;
 import main.java.Game.Jobs.Jobs;
@@ -91,16 +92,13 @@ public class WorkPaneController {
 		humourColumn = new TableColumn("Humour");
 		humourColumn.setSortable(false);
 		humourColumn.setCellValueFactory(new PropertyValueFactory<>("humour"));
-		
 		cardiovascularColumn = new TableColumn("Cardiovascular");
 		cardiovascularColumn.setSortable(false);
 		cardiovascularColumn.setCellValueFactory(new PropertyValueFactory<>("cardiovascular"));
 		
 		jobsTable.setItems(Jobs.globalJobs);
-		jobsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		jobsTable.getColumns().addAll(nameColumn, wageColumn, cardiovascularColumn, humourColumn, intelligenceColumn, strengthColumn);
 		jobsTable.setFocusTraversable(false);
-		
 	}
 
 	public void work() {

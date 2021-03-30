@@ -16,7 +16,7 @@ public class HomepageController {
 	// Components
 
 	@FXML
-	private Label homeLabel, schoolLabel, workLabel, collegeLabel, backpackLabel, gymLabel, shopLabel;
+	public Label homeLabel, schoolLabel, workLabel, collegeLabel, backpackLabel, gymLabel, shopLabel, estateLabel;
 
 	@FXML
 	private BorderPane layout;
@@ -41,6 +41,8 @@ public class HomepageController {
 	public BackpackPaneController backpackController;
 	@FXML
 	public ShopPaneController shopController;
+	@FXML
+	public EstateAgentController estateAgentController;
 	
 	@FXML
 	public Label lastMessageLabel;
@@ -65,7 +67,7 @@ public class HomepageController {
 		
 
 		// Initialise workPane
-		FXMLLoader work_loader = null, gym_loader = null, college_loader = null, backpack_loader = null, shop_loader = null;
+		FXMLLoader work_loader = null, gym_loader = null, college_loader = null, backpack_loader = null, shop_loader = null, estateAgent_loader = null;
 		try {
 			work_loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/WorkPane.fxml"));
 			work_loader.load();
@@ -77,6 +79,8 @@ public class HomepageController {
 			backpack_loader.load();
 			shop_loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/ShopPane.fxml"));
 			shop_loader.load();
+			estateAgent_loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/EstateAgent.fxml"));
+			estateAgent_loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 			Logger.error("Failed to load a XML file from homepageController");
@@ -93,6 +97,8 @@ public class HomepageController {
 		backpackController.init(this);
 		shopController = shop_loader.getController();
 		shopController.init(mc);
+		estateAgentController = estateAgent_loader.getController();
+		estateAgentController.init(mc);
 		
 		//Add all style classes
 		homeLabel.getStyleClass().add("HomepageButtons");
@@ -105,13 +111,22 @@ public class HomepageController {
 		gymLabel.getStyleClass().add("HomepageButtonsClicked");
 		workLabel.getStyleClass().add("HomepageButtonsClicked");
 		backpackLabel.getStyleClass().add("HomepageButtonsClicked");
+		estateLabel.getStyleClass().add("HomepageButtonsClicked");
 	}
 
+	
 	public void showHome() {
 		Logger.ui("Setting centre to home in homepage");
 		layout.setCenter(homePaneController.homePane);
 		setAllLabelsBack();
 		homeLabel.setStyle("-fx-text-fill: #138039");
+	}
+	
+	public void showEstate() {
+		Logger.ui("Setting centre to home in estate");
+		layout.setCenter(estateAgentController.estatePane);
+		setAllLabelsBack();
+		estateLabel.setStyle("-fx-text-fill: #138039");
 	}
 	
 	public void showShop() {
@@ -128,6 +143,7 @@ public class HomepageController {
 		workLabel.setStyle("-fx-text-fill: #DC143C");
 		backpackLabel.setStyle("-fx-text-fill: #DC143C");
 		shopLabel.setStyle("-fx-text-fill: #DC143C");
+		estateLabel.setStyle("-fx-text-fill: #DC143C");
 	}
 
 	public void showWork() {

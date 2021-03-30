@@ -114,6 +114,8 @@ public class Player {
 			Player.mc.homepageController.homePaneController.homeImage.setImage(house.getImage());
 			Player.cash.subtract(house.getPrice());
 			PlayerLog.log("You brought a " + house.getName() + " house");
+		} else {
+			PlayerLog.log("You do not have enough cash to buy that house");
 		}
 	}
 	

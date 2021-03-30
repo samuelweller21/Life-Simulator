@@ -1,3 +1,11 @@
 Name,Price,URL
 Homeless,0,NA
+Tent,1000,NA
+Caravan,30000,NA
+Flat,100000,NA
+Terraced House,150000,NA
+City House,200000,NA
+Suburban House,400000,NA
+Villa,800000,NA
 Mansion,1500000,NA
+Castle,10000000,NA
