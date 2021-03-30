@@ -82,5 +82,9 @@ public class Item {
 	public String toString() {
 		return name.get() + " - " + quantity.get() + " - £" + price.get();
 	}
+	
+	public double getS_Price() {
+		return Double.parseDouble(this.price.get());
+	}
 
 }

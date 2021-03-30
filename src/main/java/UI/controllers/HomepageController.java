@@ -9,13 +9,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import main.java.Game.Utils.Logger;
+import main.java.Game.Utils.PlayerLog;
 
 public class HomepageController {
 
 	// Components
 
 	@FXML
-	private Label homeLabel, schoolLabel, workLabel, collegeLabel, backpackLabel, gymLabel;
+	private Label homeLabel, schoolLabel, workLabel, collegeLabel, backpackLabel, gymLabel, shopLabel;
 
 	@FXML
 	private BorderPane layout;
@@ -38,6 +39,11 @@ public class HomepageController {
 	public HomePaneController homePaneController;
 	@FXML
 	public BackpackPaneController backpackController;
+	@FXML
+	public ShopPaneController shopController;
+	
+	@FXML
+	public Label lastMessageLabel;
 
 	// Main controller
 	@FXML
@@ -55,9 +61,11 @@ public class HomepageController {
 		playerPaneController.init(this);
 		infoPaneController.init(this);
 		
+		lastMessageLabel.textProperty().bind(PlayerLog.lastMessage);
+		
 
 		// Initialise workPane
-		FXMLLoader work_loader = null, gym_loader = null, college_loader = null, backpack_loader = null;
+		FXMLLoader work_loader = null, gym_loader = null, college_loader = null, backpack_loader = null, shop_loader = null;
 		try {
 			work_loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/WorkPane.fxml"));
 			work_loader.load();
@@ -67,6 +75,8 @@ public class HomepageController {
 			college_loader.load();
 			backpack_loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/BackpackPane.fxml"));
 			backpack_loader.load();
+			shop_loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/ShopPane.fxml"));
+			shop_loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 			Logger.error("Failed to load a XML file from homepageController");
@@ -81,6 +91,8 @@ public class HomepageController {
 		collegePaneController.init(this);
 		backpackController = backpack_loader.getController();
 		backpackController.init(this);
+		shopController = shop_loader.getController();
+		shopController.init(mc);
 		
 		//Add all style classes
 		homeLabel.getStyleClass().add("HomepageButtons");
@@ -102,12 +114,20 @@ public class HomepageController {
 		homeLabel.setStyle("-fx-text-fill: #138039");
 	}
 	
+	public void showShop() {
+		Logger.ui("Setting centre to home in shop");
+		layout.setCenter(shopController.shopPane);
+		setAllLabelsBack();
+		shopLabel.setStyle("-fx-text-fill: #138039");
+	}
+	
 	public void setAllLabelsBack() {
 		homeLabel.setStyle("-fx-text-fill: #DC143C");
 		schoolLabel.setStyle("-fx-text-fill: #DC143C");
 		gymLabel.setStyle("-fx-text-fill: #DC143C");
 		workLabel.setStyle("-fx-text-fill: #DC143C");
 		backpackLabel.setStyle("-fx-text-fill: #DC143C");
+		shopLabel.setStyle("-fx-text-fill: #DC143C");
 	}
 
 	public void showWork() {

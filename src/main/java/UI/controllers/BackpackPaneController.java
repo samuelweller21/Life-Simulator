@@ -18,7 +18,6 @@ public class BackpackPaneController {
 
 	public HomepageController hp;
 
-	// To Do Item table view ...
 	public TableView<Item> itemsTable;
 	public TableColumn nameColumn, quantityColumn;
 

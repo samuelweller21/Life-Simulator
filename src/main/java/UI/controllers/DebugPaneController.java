@@ -19,7 +19,7 @@ public class DebugPaneController {
 	@FXML public AnchorPane debugPane;
 	
 	@FXML public MenuItem showAllItem, hideAllItem;
-	@FXML public RadioMenuItem errorRadio, warnRadio, infoRadio, unknownRadio, initRadio, uiRadio;
+	@FXML public RadioMenuItem errorRadio, warnRadio, infoRadio, unknownRadio, initRadio, uiRadio, playerRadio;
 	
 	public void init(MainController mc) {
 		this.mc = mc;
@@ -31,6 +31,7 @@ public class DebugPaneController {
 		unknownRadio.setOnAction(e -> Logger.updateBinding());
 		initRadio.setOnAction(e -> Logger.updateBinding());
 		uiRadio.setOnAction(e -> Logger.updateBinding());
+		playerRadio.setOnAction(e -> Logger.updateBinding());
 		
 		//Autoscroll
 		debugArea.textProperty().addListener(new ChangeListener<Object>() {
@@ -49,6 +50,7 @@ public class DebugPaneController {
 		unknownRadio.setSelected(true);
 		initRadio.setSelected(true);
 		uiRadio.setSelected(true);
+		playerRadio.setSelected(true);
 		Logger.updateBinding();
 	}
 	
@@ -60,6 +62,7 @@ public class DebugPaneController {
 		unknownRadio.setSelected(false);
 		initRadio.setSelected(false);
 		uiRadio.setSelected(false);
+		playerRadio.setSelected(false);
 		Logger.updateBinding();
 	}
 

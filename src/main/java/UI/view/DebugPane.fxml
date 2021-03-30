@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane fx:id="debugPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UI.controllers.DebugPaneController">
+<AnchorPane fx:id="debugPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UI.controllers.DebugPaneController">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -34,6 +34,7 @@
                         <RadioMenuItem fx:id="initRadio" mnemonicParsing="false" selected="true" text="Initialise" />
                         <RadioMenuItem fx:id="uiRadio" mnemonicParsing="false" selected="true" text="UI" />
                         <RadioMenuItem fx:id="unknownRadio" mnemonicParsing="false" selected="true" text="Unknown" />
+                        <RadioMenuItem fx:id="playerRadio" mnemonicParsing="false" text="Player" />
                   </items>
                 </Menu>
               </menus>

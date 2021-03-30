@@ -17,6 +17,7 @@ public class PlayerLog {
 	public static Integer uid = 0;
 
 	public static StringProperty stringLog = new SimpleStringProperty();
+	public static StringProperty lastMessage = new SimpleStringProperty();
 
 	public static MainController mc;
 
@@ -28,6 +29,7 @@ public class PlayerLog {
 		PlayerLog.log.put(uid, new Log(uid, "Player Log", message));
 		PlayerLog.uid++;
 		PlayerLog.updateBinding();
+		PlayerLog.lastMessage.set(PlayerLog.log.get(uid - 1).getMessage());
 	}
 
 	public static void updateBinding() {

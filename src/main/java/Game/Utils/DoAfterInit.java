@@ -1,11 +1,8 @@
 package main.java.Game.Utils;
 
-import java.util.Optional;
-
-import javafx.scene.image.Image;
+import javafx.collections.ListChangeListener;
 import main.java.Game.Character.Player;
 import main.java.Game.Character.Skills;
-import main.java.Game.House.House;
 import main.java.Game.House.Houses;
 import main.java.Game.Items.Item;
 import main.java.Game.Items.Items;
@@ -44,20 +41,13 @@ public class DoAfterInit {
 		
 		Logger.log("Wage: " + Utils.getJobWage(Jobs.getJobFromGlobal("Gardener")));
 		for (int i = 0; i < 100; i++) {
-			PlayerLog.log("Hello");
+			Logger.player("Hello");
 		}
 		
 		//Load houses
 		Houses houses = new Houses();
 		houses.addToGlobalAsNamedList("Houses");
-		System.out.println(houses.globalToString());
-		System.out.println(houses.toString());
-		Optional<House> h = Houses.getFromGlobal("Homeless");
-		System.out.println(h.isEmpty());
-		House h2 = h.get();
-		Image img = h2.getImage();
 		Player.mc.homepageController.homePaneController.homeImage.setImage(Houses.getFromGlobal("Homeless").get().getImage());
-		
 	}
 	
 }

@@ -14,12 +14,12 @@ import main.java.Game.Activities.Activity;
 import main.java.Game.Cars.Cars;
 import main.java.Game.Cars.ThreeWheeler;
 import main.java.Game.House.House;
-import main.java.Game.House.Houses;
 import main.java.Game.Items.Item;
 import main.java.Game.Items.Items;
 import main.java.Game.Jobs.Job;
 import main.java.Game.Utils.Clock;
 import main.java.Game.Utils.Logger;
+import main.java.Game.Utils.PlayerLog;
 import main.java.UI.controllers.MainController;
 
 public class Player {
@@ -113,7 +113,13 @@ public class Player {
 			Player.home = house;
 			Player.mc.homepageController.homePaneController.homeImage.setImage(house.getImage());
 			Player.cash.subtract(house.getPrice());
+			PlayerLog.log("You brought a " + house.getName() + " house");
 		}
+	}
+	
+	public static void buy(Item item, int quantity) {
+		Player.pay(item.getS_Price()*quantity);
+		Player.items.add(item, quantity);
 	}
 
 	public static void addInternalBindings() {
@@ -184,6 +190,7 @@ public class Player {
 	public static void setJob(Job job) {
 		Player.job.setName(job.getName());
 		Player.job.setWage(job.getS_wage());
+		PlayerLog.log("You got a job as " + job.getName());
 		//Player.job.setReqSkills(job.getReqSkills());
 	}
 

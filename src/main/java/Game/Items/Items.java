@@ -96,13 +96,17 @@ public class Items {
 	public static void addToGlobal(Items items) {
 		Items temp = items;
 		temp.add(global);
-		global = temp.itemsProp;
+		Items.global.removeAll(Items.global);
+		Iterator<Item> itr = temp.itemsProp.iterator();
+		while (itr.hasNext()) {
+			Items.global.add(itr.next());
+		}
 	}
 	
 	public static void removeFromGlobal(Item item) {
 		Items temp = new Items(global);
 		temp.remove(item);
-		global = temp.itemsProp;
+		global.setAll(temp.itemsProp);
 	}
 	
 	public static void removeFromGlobal(Items items) {
@@ -127,7 +131,6 @@ public class Items {
 
 	public Items() {
 		itemsProp = FXCollections.observableArrayList();
-		global = FXCollections.observableArrayList();
 	}
 
 	public Optional<Item> getItem(String name) {
@@ -206,7 +209,6 @@ public class Items {
 	public Items(Items items) {
 		itemsProp = FXCollections.observableArrayList();
 		add(items);
-		global = FXCollections.observableArrayList();
 	}
 
 	public String toString() {

@@ -17,7 +17,7 @@ public class Logger {
 	public static Integer uid = 0;
 
 	public static final String WARN = "Warn", ERROR = "Error", INFO = "Info", UNKNOWN = "Unknown Log Type",
-			INITIALISE = "Initialise", UI = "UI";
+			INITIALISE = "Initialise", UI = "UI", PLAYER = "Player";
 
 	public static StringProperty stringLog = new SimpleStringProperty();
 
@@ -35,6 +35,13 @@ public class Logger {
 
 	public static void log(String level, String message) {
 		Logger.log.put(uid, new Log(uid, level, message));
+		Logger.uid++;
+		Logger.updateBinding();
+	}
+	
+	public static void player(String message) {
+		Logger.log.put(uid, new Log(uid, PLAYER, message));
+		PlayerLog.log(message);
 		Logger.uid++;
 		Logger.updateBinding();
 	}
@@ -72,6 +79,29 @@ public class Logger {
 	public static void updateBinding() {
 		Logger.stringLog.set(getDebugText());
 	}
+	
+	public static String getPlayer() {
+		StringBuilder sb = new StringBuilder();
+		NavigableMap<Integer, Log> desc = Logger.log.descendingMap();
+		Iterator<Entry<Integer, Log>> itr = desc.entrySet().iterator();
+
+		// Form a list of acceptable levels
+		ArrayList<String> whitelist = new ArrayList<String>();
+		whitelist.add(PLAYER);
+
+		// Push whitelisted messages
+		while (itr.hasNext()) {
+			Entry<Integer, Log> entry = itr.next();
+			Log line = (Log) entry.getValue();
+			if (whitelist.contains(line.getLevel())) {
+				sb.append(
+						entry.getKey() + " : " + line.getLevel() + " : " + line.getMessage() + " at " + line.getTime());
+				sb.append("\n");
+			}
+		}
+
+		return sb.toString();
+	}
 
 	// NB This is very slow. If logs get long we will want to do an incremental
 	// system
@@ -100,6 +130,9 @@ public class Logger {
 		}
 		if (mc.debugPaneController.uiRadio.isSelected()) {
 			whitelist.add(UI);
+		}
+		if (mc.debugPaneController.playerRadio.isSelected()) {
+			whitelist.add(PLAYER);
 		}
 
 		// Push whitelisted messages

@@ -1,5 +1,6 @@
 package main.java.Game.Threads;
 
+import main.java.Game.Character.Player;
 import main.java.Game.Utils.Logger;
 import main.java.UI.controllers.MainController;
 import javafx.concurrent.Service;
