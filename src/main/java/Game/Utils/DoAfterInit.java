@@ -14,12 +14,9 @@ public class DoAfterInit {
 	public static void run() {
 		
 		//Load items
-		
 		Items.addToGlobalAsNamedList("Items");
 		
 		//Load jobs
-		
-		
 		Jobs testJobs = new Jobs("Test");
 		testJobs.getJobsFromNamedList("Jobs");
 		testJobs.add(new Job("Test job", 10, new Skills()));
@@ -27,11 +24,13 @@ public class DoAfterInit {
 		Player.setJob(Jobs.getJobFromGlobal("Gardener"));
 		
 		//Test player logger
-		
 		Logger.log("Wage: " + Utils.getJobWage(Jobs.getJobFromGlobal("Gardener")));
 		for (int i = 0; i < 100; i++) {
 			Logger.player("Hello");
 		}
+		
+		//Set to home
+		Player.mc.homepageController.showHome();
 		
 		//Load houses
 		Houses houses = new Houses();
@@ -41,6 +40,8 @@ public class DoAfterInit {
 		
 		//Start playing sounds
 		SoundSystem.setMute(false);
+		
+		
 		
 		//Testing
 	}

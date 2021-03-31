@@ -18,7 +18,7 @@ public class AboutPageController {
 		
 		//Fill about text
 		StringBuilder sb = new StringBuilder();
-		sb.append("Life Simulator is a program created by Sam Weller using JavaFX and scene builder" + "\n");
+		sb.append("Life Simulator is a game/program created using JavaFX and scene builder" + "\n");
 		sb.append("It demonstrates many principles such as: " + "\n");
 		sb.append("- Nodes e.g. labels, buttons, images, tablesview, menus, " + "\n");
 		sb.append("- Controller oriented programming style" + "\n");
@@ -27,6 +27,9 @@ public class AboutPageController {
 		sb.append("- Abstraction of components" + "\n");
 		sb.append("- Multi-monitor handling" + "\n");
 		sb.append("- Basic styling in CSS" + "\n");
+		sb.append("- FX Graphs with a semi-realistic stock BM market" + "\n");
+		sb.append("- Sound system" + "\n");
+		sb.append("- Keyboard shortcuts" + "\n");
 		sb.append("\n");
 		sb.append("You can find the source code at: " + "https://github.com/samuelweller21/Life-Simulator" + "\n");
 		sb.append("See www.samuelweller.com for more" + "\n");

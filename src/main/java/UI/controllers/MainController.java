@@ -25,7 +25,6 @@ public class MainController {
 	@FXML
 	public DebugPaneController debugPaneController;
 
-	public Main main;
 	public CashFlickerer cashFlickerer;
 	public TimeFlickerer timeFlickerer;
 

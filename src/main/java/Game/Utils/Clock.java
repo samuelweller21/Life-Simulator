@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import main.java.Game.Activities.Activity;
 import main.java.Game.Character.Player;
+import main.java.Game.StockMarket.TheMarket;
 
 public class Clock {
 
@@ -29,6 +30,7 @@ public class Clock {
 		}
 		minute = wakeTime;
 		updateBindings();
+		TheMarket.nextDay();
 	}
 
 	public void nextMorning() {
@@ -44,6 +46,7 @@ public class Clock {
 			PlayerLog.log("Congrulations on finishing - You may continue playing");
 			//Could remove homepage and add a blank page showing stats and say something like "you are dead - thanks for playing"
 		}
+		TheMarket.nextDay();
 	}
 
 	public void init() {

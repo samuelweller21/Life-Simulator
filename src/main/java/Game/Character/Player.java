@@ -93,6 +93,14 @@ public class Player {
 		items = new Items();
 		items.add(new Item("Mobile Phone", 600, 1));
 		items.add(new Item("Glass", 2, 2));
+		
+		//Set up bindings
+		Player.cash.addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				Player.s_cash.set(newValue.toString());
+			}
+		});
 	}
 
 	public static void init(MainController mc) {
