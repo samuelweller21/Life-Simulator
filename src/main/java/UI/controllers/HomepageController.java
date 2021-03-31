@@ -16,7 +16,7 @@ public class HomepageController {
 	// Components
 
 	@FXML
-	public Label homeLabel, schoolLabel, workLabel, collegeLabel, backpackLabel, gymLabel, shopLabel, estateLabel;
+	public Label homeLabel, schoolLabel, workLabel, collegeLabel, backpackLabel, gymLabel, shopLabel, estateLabel, pubLabel;
 
 	@FXML
 	private BorderPane layout;
@@ -43,6 +43,8 @@ public class HomepageController {
 	public ShopPaneController shopController;
 	@FXML
 	public EstateAgentController estateAgentController;
+	@FXML
+	public PubPaneController pubController;
 	
 	@FXML
 	public Label lastMessageLabel;
@@ -67,7 +69,8 @@ public class HomepageController {
 		
 
 		// Initialise workPane
-		FXMLLoader work_loader = null, gym_loader = null, college_loader = null, backpack_loader = null, shop_loader = null, estateAgent_loader = null;
+		FXMLLoader work_loader = null, gym_loader = null, college_loader = null, backpack_loader = null, 
+				shop_loader = null, estateAgent_loader = null, pub_loader = null;
 		try {
 			work_loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/WorkPane.fxml"));
 			work_loader.load();
@@ -81,6 +84,8 @@ public class HomepageController {
 			shop_loader.load();
 			estateAgent_loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/EstateAgent.fxml"));
 			estateAgent_loader.load();
+			pub_loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/PubPane.fxml"));
+			pub_loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 			Logger.error("Failed to load a XML file from homepageController");
@@ -99,19 +104,22 @@ public class HomepageController {
 		shopController.init(mc);
 		estateAgentController = estateAgent_loader.getController();
 		estateAgentController.init(mc);
+		pubController = pub_loader.getController();
+		pubController.init(mc);
 		
 		//Add all style classes
-		homeLabel.getStyleClass().add("HomepageButtons");
-		schoolLabel.getStyleClass().add("HomepageButtons");
-		gymLabel.getStyleClass().add("HomepageButtons");
-		workLabel.getStyleClass().add("HomepageButtons");
-		backpackLabel.getStyleClass().add("HomepageButtons");
-		homeLabel.getStyleClass().add("HomepageButtonsClicked");
-		schoolLabel.getStyleClass().add("HomepageButtonsClicked");
-		gymLabel.getStyleClass().add("HomepageButtonsClicked");
-		workLabel.getStyleClass().add("HomepageButtonsClicked");
-		backpackLabel.getStyleClass().add("HomepageButtonsClicked");
-		estateLabel.getStyleClass().add("HomepageButtonsClicked");
+//		homeLabel.getStyleClass().add("HomepageButtons");
+//		schoolLabel.getStyleClass().add("HomepageButtons");
+//		gymLabel.getStyleClass().add("HomepageButtons");
+//		workLabel.getStyleClass().add("HomepageButtons");
+//		backpackLabel.getStyleClass().add("HomepageButtons");
+//		homeLabel.getStyleClass().add("HomepageButtonsClicked");
+//		schoolLabel.getStyleClass().add("HomepageButtonsClicked");
+//		gymLabel.getStyleClass().add("HomepageButtonsClicked");
+//		workLabel.getStyleClass().add("HomepageButtonsClicked");
+//		backpackLabel.getStyleClass().add("HomepageButtonsClicked");
+//		estateLabel.getStyleClass().add("HomepageButtonsClicked");
+//		pubLabel.getStyleClass().add("HomepageButtonsClicked");
 	}
 
 	
@@ -120,6 +128,13 @@ public class HomepageController {
 		layout.setCenter(homePaneController.homePane);
 		setAllLabelsBack();
 		homeLabel.setStyle("-fx-text-fill: #138039");
+	}
+	
+	public void showPub() {
+		Logger.ui("Setting centre to pub in homepage");
+		layout.setCenter(pubController.pubPane);
+		setAllLabelsBack();
+		pubLabel.setStyle("-fx-text-fill: #138039");
 	}
 	
 	public void showEstate() {
@@ -136,6 +151,7 @@ public class HomepageController {
 		shopLabel.setStyle("-fx-text-fill: #138039");
 	}
 	
+	
 	public void setAllLabelsBack() {
 		homeLabel.setStyle("-fx-text-fill: #DC143C");
 		schoolLabel.setStyle("-fx-text-fill: #DC143C");
@@ -144,6 +160,7 @@ public class HomepageController {
 		backpackLabel.setStyle("-fx-text-fill: #DC143C");
 		shopLabel.setStyle("-fx-text-fill: #DC143C");
 		estateLabel.setStyle("-fx-text-fill: #DC143C");
+		pubLabel.setStyle("-fx-text-fill: #DC143C");
 	}
 
 	public void showWork() {

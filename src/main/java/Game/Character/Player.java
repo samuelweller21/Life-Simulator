@@ -158,7 +158,7 @@ public class Player {
 			Player.pay(activity.getPrice());
 			Player.spendTime(activity.getTime());
 			Player.addSkills(activity.getSkillsToAdd());
-			Logger.info("Doing " + activity.getActivityName());
+			Logger.player("Doing " + activity.getActivityName());
 		}
 	}
 

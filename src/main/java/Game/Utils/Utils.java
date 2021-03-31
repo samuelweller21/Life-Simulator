@@ -9,6 +9,7 @@ import javafx.geometry.HPos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import main.java.Game.Activities.Activity;
+import main.java.Game.Character.SkillsTable;
 import main.java.Game.Jobs.Job;
 
 public abstract class Utils {
@@ -62,6 +63,13 @@ public abstract class Utils {
 		sb.append(activity.getActivityName() + "\n");
 		sb.append("Cost: £" + activity.getPrice() + "\n");
 		sb.append("Duration: " + activity.getTime() + " minutes \n");
+		Iterator<SkillsTable> itr = activity.skillsToAdd.skillsProp.iterator();
+		while (itr.hasNext()) {
+			SkillsTable skill = itr.next();
+			if (Integer.parseInt(skill.getValue()) != 0) {
+				sb.append(skill.getSkill() + ": " + skill.getValue() + "\n");
+			} 
+		}
 		label.setText(sb.toString());
 		GridPane.setHalignment(label, HPos.RIGHT);
 	}
@@ -78,5 +86,6 @@ public abstract class Utils {
 		}
 		return s;
 	}
+	
 	
 }
