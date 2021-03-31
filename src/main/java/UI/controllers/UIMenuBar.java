@@ -23,16 +23,24 @@ public class UIMenuBar extends MenuBar {
 	public Menu log;
 	
 	public MenuItem showPlayerLog;
+	
+	//About
+	public Menu about;
+	
+	public MenuItem showAboutPage;
+	
 	public PlayerLogController playerLogController;
-	public Stage logStage;
-	public Scene scene;
+	public AboutPageController aboutPageController;
+	public Stage logStage, aboutStage;
+	public Scene logScene, aboutScene;
 	
 	//Main Controller
 	public MainController mc;
 	
 	public void init(MainController mc) {
 		this.mc = mc;
-		Parent root = null;
+		Parent root = null, root2 = null;
+		
 		// Initialise Playerlog
 		FXMLLoader playerLog_loader = null;
 		try {
@@ -45,11 +53,27 @@ public class UIMenuBar extends MenuBar {
 
 		playerLogController = playerLog_loader.getController();
 		playerLogController.init(mc);
-		scene = new Scene(root, 400, 400);
+		logScene = new Scene(root, 400, 400);
 		logStage = new Stage();
 		logStage.setTitle("Player log");
-		logStage.setScene(scene);
+		logStage.setScene(logScene);
+		
+		// Initialise About page
+		FXMLLoader aboutPage_loader = null;
+		try {
+			aboutPage_loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/AboutPage.fxml"));
+			root2 = aboutPage_loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+			Logger.error("Failed to load a XML file from UIMenuBar");
+		}
 
+		aboutPageController = aboutPage_loader.getController();
+		aboutPageController.init(mc);
+		aboutScene = new Scene(root2, 600, 600);
+		aboutStage = new Stage();
+		aboutStage.setTitle("About");
+		aboutStage.setScene(aboutScene);
 	}
 	
 	public UIMenuBar() {
@@ -59,15 +83,23 @@ public class UIMenuBar extends MenuBar {
 		close = new MenuItem("Close");
 		close.setOnAction(e -> Platform.exit());
 		file.getItems().add(close);
-		this.getMenus().add(file);
 		
 		//Log
 		log = new Menu("Log");
 		showPlayerLog = new MenuItem("Show log of events");
 		showPlayerLog.setOnAction(e -> {if(logStage.isShowing()) { logStage.hide(); } else { logStage.show(); }});
-		
 		log.getItems().add(showPlayerLog);
+		
+		//About
+		about = new Menu("About");
+		showAboutPage = new MenuItem("About");
+		showAboutPage.setOnAction(e -> {if(aboutStage.isShowing()) { aboutStage.hide(); } else { aboutStage.show(); }});
+		about.getItems().add(showAboutPage);
+		
+		//Add to menu
+		this.getMenus().add(file);
 		this.getMenus().add(log);
+		this.getMenus().add(about);
 		
 	}
 	

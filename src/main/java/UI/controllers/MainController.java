@@ -40,6 +40,7 @@ public class MainController {
 		cashFlickerer = new CashFlickerer(this);
 		timeFlickerer = new TimeFlickerer(this);
 		
+		
 		//Temp
 		this.homepageController.showBackpack();
 	}
