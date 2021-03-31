@@ -9,6 +9,7 @@ import main.java.Game.Activities.Activity;
 import main.java.Game.Character.Player;
 import main.java.Game.Character.Skills;
 import main.java.Game.Utils.Clock;
+import main.java.Game.Utils.SoundSystem;
 import main.java.Game.Utils.Utils;
 
 public class GymPaneController {
@@ -34,11 +35,12 @@ public class GymPaneController {
 		// treadmillImage.fitWidthProperty().bind(homepageController.mainController.main.primaryStage.getProperties().);
 
 		// Init activities
-		runActivity = new Activity("Run", 0, Clock.toTime(0, 30));
+		runActivity = new Activity("Run", 0, Clock.toTime(0, 30), SoundSystem.RUN);
 		runActivity.addSkill(Skills.CARDIOVASCULAR, 1);
+		
 		Utils.addActivityToLabel(runLabel, runActivity);
 
-		liftActivity = new Activity("Lift", 10, Clock.toTime(1, 0));
+		liftActivity = new Activity("Lift", 10, Clock.toTime(1, 0), SoundSystem.LIFT);
 		liftActivity.addSkill(Skills.STRENGTH, 1);
 		Utils.addActivityToLabel(liftLabel, liftActivity);
 		

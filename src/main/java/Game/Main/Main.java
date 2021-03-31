@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.java.Game.Utils.DoAfterInit;
+import main.java.Game.Utils.DoBeforeInit;
 import main.java.Game.Utils.Logger;
 import main.java.UI.controllers.MainController;
 
@@ -24,6 +25,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		DoBeforeInit.run();
 		this.primaryStage = primaryStage;
 		Parent root = null;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/java/UI/view/Main.fxml"));

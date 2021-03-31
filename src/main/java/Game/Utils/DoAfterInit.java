@@ -39,6 +39,9 @@ public class DoAfterInit {
 		Player.mc.homepageController.homePaneController.homeImage.setImage(Houses.getFromGlobal("Homeless").get().getImage());
 		Player.mc.homepageController.estateAgentController.loadHouses();
 		
+		//Start playing sounds
+		SoundSystem.setMute(false);
+		
 		//Testing
 	}
 	

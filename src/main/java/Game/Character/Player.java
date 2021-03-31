@@ -20,6 +20,7 @@ import main.java.Game.Jobs.Job;
 import main.java.Game.Utils.Clock;
 import main.java.Game.Utils.Logger;
 import main.java.Game.Utils.PlayerLog;
+import main.java.Game.Utils.SoundSystem;
 import main.java.UI.controllers.MainController;
 
 public class Player {
@@ -106,6 +107,7 @@ public class Player {
 		} else {
 			Logger.error(
 					"You can requested to make a purchase you cannot afford - Make sure to call _canDo_ before making a purchase");
+			SoundSystem.playSound(SoundSystem.FAIL);
 		}
 	}
 	
@@ -116,14 +118,18 @@ public class Player {
 			Player.cash.set(Player.cash.get() - house.getPrice());
 			PlayerLog.log("You brought a " + house.getName() + " house");
 			Player.houseName.set(house.getName());
+			SoundSystem.playSound(SoundSystem.HOUSE);
 		} else {
 			PlayerLog.log("You do not have enough cash to buy that house");
+			SoundSystem.playSound(SoundSystem.FAIL);
 		}
 	}
 	
 	public static void buy(Item item, int quantity) {
+		//NB Should probably check we can buy here too for safety
 		Player.pay(item.getS_Price()*quantity);
 		Player.items.add(item, quantity);
+		SoundSystem.playSound(SoundSystem.BUY);
 	}
 
 	public static void addInternalBindings() {
@@ -161,6 +167,7 @@ public class Player {
 			Player.spendTime(activity.getTime());
 			Player.addSkills(activity.getSkillsToAdd());
 			Logger.player("Doing " + activity.getActivityName());
+			SoundSystem.playSound(activity.sound);
 		}
 	}
 
@@ -188,6 +195,7 @@ public class Player {
 			Logger.info(Player.name + " has worked as " + job.getJobName());
 			Player.cash.set(cash.get() + (job.work() * time / 60));
 			Player.clock.tick(time);
+			SoundSystem.playSound(SoundSystem.WORK);
 		}
 	}
 
@@ -195,7 +203,7 @@ public class Player {
 		Player.job.setName(job.getName());
 		Player.job.setWage(job.getS_wage());
 		PlayerLog.log("You got a job as " + job.getName());
-		//Player.job.setReqSkills(job.getReqSkills());
+		SoundSystem.playSound(SoundSystem.JOB);
 	}
 
 	public static Job getJob() {
@@ -210,6 +218,7 @@ public class Player {
 			} else {
 				Logger.warn("Thread is already running, is user spamming?");
 			}
+			SoundSystem.playSound(SoundSystem.FAIL);
 			return false;
 		} else {
 			// Can buy
@@ -229,6 +238,7 @@ public class Player {
 			} else {
 				Logger.warn("Thread is already running, is user spamming?");
 			}
+			SoundSystem.playSound(SoundSystem.FAIL);
 			return false;
 		} else {
 			// Can buy

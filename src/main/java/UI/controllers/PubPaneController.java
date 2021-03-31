@@ -8,6 +8,7 @@ import main.java.Game.Activities.Activity;
 import main.java.Game.Character.Player;
 import main.java.Game.Character.Skills;
 import main.java.Game.Utils.Clock;
+import main.java.Game.Utils.SoundSystem;
 import main.java.Game.Utils.Utils;
 
 public class PubPaneController {
@@ -32,6 +33,7 @@ public class PubPaneController {
 	public void drink(ActionEvent event) {
 		if (Player.canDo(drinkActivity)) {
 			Player.doActivity(drinkActivity);
+			SoundSystem.playSound(SoundSystem.DRINK);
 		}
  	}
 }

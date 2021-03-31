@@ -87,5 +87,9 @@ public abstract class Utils {
 		return s;
 	}
 	
+	public static String removeWAV(String file) {
+		return file.substring(0,file.length() - 4);
+	}
+	
 	
 }

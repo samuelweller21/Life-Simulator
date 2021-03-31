@@ -9,6 +9,7 @@ import main.java.Game.Activities.Activity;
 import main.java.Game.Character.Player;
 import main.java.Game.Character.Skills;
 import main.java.Game.Utils.Clock;
+import main.java.Game.Utils.SoundSystem;
 import main.java.Game.Utils.Utils;
 
 public class CollegePaneController {
@@ -42,12 +43,14 @@ public class CollegePaneController {
 	public void read() {
 		if (Player.canDo(readActivity)) {
 			Player.doActivity(readActivity);
+			SoundSystem.playSound(SoundSystem.STUDY);
 		}
 	}
 
 	public void course() {
 		if (Player.canDo(courseActivity)) {
 			Player.doActivity(courseActivity);
+			SoundSystem.playSound(SoundSystem.COURSE);
 		}
 	}
 }

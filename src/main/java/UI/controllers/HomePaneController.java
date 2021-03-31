@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import main.java.Game.Character.Player;
 import main.java.Game.House.House;
+import main.java.Game.Utils.SoundSystem;
 
 public class HomePaneController {
 
@@ -35,6 +36,7 @@ public class HomePaneController {
 
 	public void sleep() {
 		Player.clock.nextMorning();
+		SoundSystem.playSound(SoundSystem.SLEEP);
 	}
 
 }
