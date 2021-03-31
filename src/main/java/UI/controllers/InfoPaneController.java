@@ -11,7 +11,7 @@ import main.java.Game.Utils.Logger;
 public class InfoPaneController {
 
 	@FXML
-	public Label dayLabel, timeLabel, cashLabel;
+	public Label dayLabel, timeLabel, cashLabel, yearLabel;
 	@FXML
 	public HBox infoPaneHBox;
 	@FXML
@@ -24,6 +24,7 @@ public class InfoPaneController {
 		dayLabel.textProperty().bind(Player.clock.dayProp);
 		timeLabel.textProperty().bind(Player.clock.minuteProp);
 		cashLabel.textProperty().bind(Player.s_cash);
+		yearLabel.textProperty().bind(Player.clock.yearProp);
 		if (!Main.CHEAT) {
 			infoPaneHBox.getChildren().remove(cheatSkillsButton);
 			infoPaneHBox.getChildren().remove(cheatMoneyButton);

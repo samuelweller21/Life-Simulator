@@ -10,6 +10,16 @@
    <children>
       <HBox fx:id="infoPaneHBox" fillHeight="false" minHeight="-Infinity" minWidth="-Infinity">
          <children>
+            <Label text="Year:">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="yearLabel">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
             <Label text="Day:">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

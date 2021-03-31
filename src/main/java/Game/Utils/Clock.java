@@ -14,17 +14,30 @@ public class Clock {
 
 	public int day = 1;
 	public int minute = 7 * 60;
+	public int year = 1;
 	public StringProperty dayProp = new SimpleStringProperty();
 	public StringProperty minuteProp = new SimpleStringProperty();
+	public StringProperty yearProp = new SimpleStringProperty();
+	
 
 	public void nextMorning(int wakeTime) {
 		day++;
+		if (day > 365) {
+			day = 1;
+			year++;
+			Player.age.set(Player.age.get()+1);
+		}
 		minute = wakeTime;
 		updateBindings();
 	}
 
 	public void nextMorning() {
 		day++;
+		if (day > 365) {
+			day = 1;
+			year++;
+			Player.age.set(Player.age.get()+1);
+		}
 		minute = 7 * 60;
 		updateBindings();
 		if (Player.age.get() > 99) {
@@ -49,8 +62,13 @@ public class Clock {
 	public void updateBindings() {
 		dayProp.set(getDay());
 		minuteProp.set(getTime());
+		yearProp.set(getYear());
 	}
 
+	public String getYear() {
+		return Integer.toString(year);
+	}
+	
 	public String getDay() {
 		return (Integer.toString(day));
 	}
