@@ -19,7 +19,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Spinner>
-            <Button fx:id="buyButton" mnemonicParsing="false" onAction="#buy" text="Button">
+            <Button fx:id="buyButton" mnemonicParsing="false" onAction="#buy" text="Buy">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>

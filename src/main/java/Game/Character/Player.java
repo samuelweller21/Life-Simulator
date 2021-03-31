@@ -47,6 +47,7 @@ public class Player {
 	// Attribs
 	public static DoubleProperty cash = new SimpleDoubleProperty();
 	public static StringProperty s_cash = new SimpleStringProperty();
+	public static StringProperty houseName = new SimpleStringProperty("");
 
 	// Skills
 	public static Skills skills;
@@ -112,8 +113,9 @@ public class Player {
 		if (enoughCash(house.getPrice())) {
 			Player.home = house;
 			Player.mc.homepageController.homePaneController.homeImage.setImage(house.getImage());
-			Player.cash.subtract(house.getPrice());
+			Player.cash.set(Player.cash.get() - house.getPrice());
 			PlayerLog.log("You brought a " + house.getName() + " house");
+			Player.houseName.set(house.getName());
 		} else {
 			PlayerLog.log("You do not have enough cash to buy that house");
 		}
@@ -213,6 +215,10 @@ public class Player {
 			// Can buy
 			return true;
 		}
+	}
+	
+	public static House getHome() {
+		return home;
 	}
 
 	public static boolean enoughTime(int time) {

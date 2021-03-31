@@ -53,11 +53,11 @@ public class Items {
 		}
 	}
 	
-	public void addToGlobalAsNamesList(String name) {
+	public static void addToGlobalAsNamedList(String name) {
 		addToGlobalFromURL(Utils.RES_URL + "/ItemLists/" + name + ".csv");
 	}
 	
-	public void addToGlobalFromURL(String url) {
+	public static void addToGlobalFromURL(String url) {
 		File file = new File(url);
 		if (!file.exists()) {
 			Logger.warn("File at " + url + " does not exist");
@@ -73,7 +73,7 @@ public class Items {
 						continue;
 					} else {
 						Item item = new Item(data[0], Double.parseDouble(data[1]), Integer.parseInt(data[2]));
-						addToGlobal(item);
+						Items.addToGlobal(item);
 					}
 				}
 				reader.close();

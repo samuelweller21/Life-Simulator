@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import main.java.Game.Character.Player;
+import main.java.Game.House.House;
 
 public class HomePaneController {
 
@@ -26,6 +27,8 @@ public class HomePaneController {
 		this.hp = hp;
 		homeLabel.setText("House:");
 		bedLabel.setText("Bed:");
+		Player.buyHouse(new House("Homeless", 0));
+		houseLabel.textProperty().bind(Player.houseName);
 		GridPane.setHalignment(homeLabel, HPos.RIGHT);
 		GridPane.setHalignment(bedLabel, HPos.RIGHT);
 	}
