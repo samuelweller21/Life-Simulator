@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="layout" stylesheets="@Homepage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UI.controllers.HomepageController">
+   <top>
+      <VBox fx:id="menuBox" BorderPane.alignment="CENTER">
+         <children>
+            <fx:include fx:id="infoPane" source="InfoPane.fxml" />
+            <Separator>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Separator>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <fx:include fx:id="homePane" source="HomePane.fxml" />
+   </center>
+   <right>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <fx:include fx:id="playerPane" source="PlayerPane.fxml" />
+         </children>
+      </HBox>
+   </right>
+   <left>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <children>
+            <VBox>
+               <children>
+                  <Label id="homeButton" fx:id="homeLabel" onMouseClicked="#showHome" styleClass="HomepageButtons" stylesheets="@Homepage.css" text="Home" textFill="#138039" underline="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <tooltip>
+                        <Tooltip text="Click this or the 'h' key to go home" />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="schoolLabel" onMouseClicked="#showCollege" styleClass="HomepageButtons" stylesheets="@Homepage.css" text="College">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="gymLabel" onMouseClicked="#showGym" styleClass="HomepageButtons" stylesheets="@Homepage.css" text="Gym">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="workLabel" onMouseClicked="#showWork" styleClass="HomepageButtons" text="Work">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="shopLabel" onMouseClicked="#showShop" styleClass="HomepageButtons" text="Shop">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="backpackLabel" onMouseClicked="#showBackpack" styleClass="HomepageButtons" text="Backpack">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="estateLabel" onMouseClicked="#showEstate" styleClass="HomepageButtons" text="Estate Agent">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="pubLabel" onMouseClicked="#showPub" styleClass="HomepageButtons" text="Pub">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="stockLabel" onMouseClicked="#showStock" styleClass="HomepageButtons" text="Stock Broker">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Separator>
+         </children>
+      </HBox>
+   </left>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lastMessageLabel" text="Label" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
