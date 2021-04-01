@@ -31,17 +31,6 @@ public class InfoPaneController {
 		}
 	}
 	
-	public void doTry() {
-//		Item mobileItem = new Item("Mobile Phone", 600, 1);
-//		if (!Player.items.remove(mobileItem)) {
-//			System.out.println("You don't have that item");
-//		}
-		Player.skills.addHumour(10);
-		Player.skills.addCardiovascular(10);
-		Player.skills.addStrength(10);
-		Player.skills.addIntelligence(10);
-	}
-	
 	public void cheatSkills() {
 		Player.skills.addHumour(10);
 		Player.skills.addCardiovascular(10);

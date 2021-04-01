@@ -13,6 +13,7 @@ public class AboutPageController {
 	
 	public MainController mc;
 	
+	
 	public void init(MainController mc) {
 		this.mc = mc;
 		
@@ -29,7 +30,7 @@ public class AboutPageController {
 		sb.append("- Basic styling in CSS" + "\n");
 		sb.append("- FX Graphs with a semi-realistic stock BM market" + "\n");
 		sb.append("- Sound system" + "\n");
-		sb.append("- Keyboard shortcuts" + "\n");
+		sb.append("- Keyboard shortcuts and tooltips" + "\n");
 		sb.append("\n");
 		sb.append("You can find the source code at: " + "https://github.com/samuelweller21/Life-Simulator" + "\n");
 		sb.append("See www.samuelweller.com for more" + "\n");

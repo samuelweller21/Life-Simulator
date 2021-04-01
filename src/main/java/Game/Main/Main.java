@@ -71,7 +71,9 @@ public class Main extends Application {
 
 			@Override
 			public void handle(KeyEvent event) {
-				Player.mc.homepageController.showHome();
+				if (event.getText().equals("h")) {
+					Player.mc.homepageController.showHome();
+				}
 			}
 			
 		});

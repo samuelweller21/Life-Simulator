@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -48,6 +49,9 @@
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
+                     <tooltip>
+                        <Tooltip text="Click this or the 'h' key to go home" />
+                     </tooltip>
                   </Label>
                   <Label fx:id="schoolLabel" onMouseClicked="#showCollege" styleClass="HomepageButtons" stylesheets="@Homepage.css" text="College">
                      <cursor>
