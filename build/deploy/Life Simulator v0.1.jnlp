@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Life Simulator v0.1.jnlp">
+  <information>
+    <title>Life Simulator v0.1</title>
+    <vendor>SamuelWeller</vendor>
+    <description>Life Simulator</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="libs\JLargeArrays-1.5.jar" size="232470" download="eager" />
+    <jar href="libs\JTransforms-3.1.jar" size="1175798" download="eager" />
+    <jar href="libs\apiguardian-api-1.1.0.jar" size="2387" download="eager" />
+    <jar href="libs\checker-qual-3.8.0.jar" size="230905" download="eager" />
+    <jar href="libs\commons-collections4-4.4.jar" size="751914" download="eager" />
+    <jar href="libs\commons-math3-3.5.jar" size="2038489" download="eager" />
+    <jar href="libs\error_prone_annotations-2.5.1.jar" size="13854" download="eager" />
+    <jar href="libs\failureaccess-1.0.1.jar" size="4617" download="eager" />
+    <jar href="libs\guava-30.1.1-jre.jar" size="2874025" download="eager" />
+    <jar href="libs\j2objc-annotations-1.3.jar" size="8781" download="eager" />
+    <jar href="libs\javafx-base-15.0.1-win.jar" size="745526" download="eager" />
+    <jar href="libs\javafx-base-15.0.1.jar" size="302" download="eager" />
+    <jar href="libs\javafx-controls-15.0.1-win.jar" size="2531028" download="eager" />
+    <jar href="libs\javafx-controls-15.0.1.jar" size="306" download="eager" />
+    <jar href="libs\javafx-fxml-15.0.1-win.jar" size="128790" download="eager" />
+    <jar href="libs\javafx-fxml-15.0.1.jar" size="302" download="eager" />
+    <jar href="libs\javafx-graphics-15.0.1-win.jar" size="5898578" download="eager" />
+    <jar href="libs\javafx-graphics-15.0.1.jar" size="306" download="eager" />
+    <jar href="libs\jdistlib-0.4.5.jar" size="398620" download="eager" />
+    <jar href="libs\jsr305-3.0.2.jar" size="19936" download="eager" />
+    <jar href="libs\junit-jupiter-api-5.7.0.jar" size="174598" download="eager" />
+    <jar href="libs\junit-jupiter-engine-5.7.0.jar" size="211836" download="eager" />
+    <jar href="libs\junit-platform-commons-1.7.0.jar" size="99511" download="eager" />
+    <jar href="libs\junit-platform-engine-1.7.0.jar" size="180907" download="eager" />
+    <jar href="libs\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" size="2199" download="eager" />
+    <jar href="libs\opentest4j-1.2.0.jar" size="7653" download="eager" />
+    <jar href="libs\org.eclipse.fx.ide.css.jfx8_3.7.0.202010120832.jar" size="34538" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="0" height="0" main-class="main.java.Game.Main.MainLauncher"  name="Life Simulator" />
+  <update check="background"/>
+</jnlp>
