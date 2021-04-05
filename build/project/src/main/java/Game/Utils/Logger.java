@@ -77,7 +77,12 @@ public class Logger {
 	}
 
 	public static void updateBinding() {
-		Logger.stringLog.set(getDebugText());
+		try {
+			Logger.stringLog.set(getDebugText());
+		} catch (Exception e) {
+			//Logger probably not initialised yet
+		}
+		
 	}
 	
 	public static String getPlayer() {

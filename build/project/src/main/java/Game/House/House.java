@@ -1,13 +1,12 @@
 package main.java.Game.House;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 import main.java.Game.Utils.Logger;
-import main.java.Game.Utils.Utils;
 
 public class House {
 	
@@ -79,26 +78,37 @@ public class House {
 		}		
 	}
 	
+	public void loadImage(InputStream is) {
+		try {
+			this.img = new Image(is, 100, 100, false, false);
+		} catch (Exception e) {
+			Logger.warn("Could not load image " + name);
+			e.printStackTrace();
+		}	
+	}
+	
 	
 	public void loadImageFromList(String name) {
-		File file;
+		InputStream is = null;
 		try {
-			url = Utils.RES_URL + "/images/Houses/" + name + ".png";
-			file = new File(url);
-			if (!file.exists()) {
-				url = Utils.RES_URL + "/images/Houses/" + name + ".jpg";
-				file = new File(url);
-				if (!file.exists()) {
-					url = Utils.RES_URL + "/images/Houses/" + name + ".svg";
-					file = new File(url);
+			is = this.getClass().getClassLoader().getResourceAsStream("main/resources/images/Houses/" + name + ".png");
+			loadImage(is);
+		} catch (Exception e1) {
+			try {
+				if (is.equals(null)) {
+					is = this.getClass().getClassLoader().getResourceAsStream("main/resources/images/Houses/" + name + ".jpg");
+					loadImage(is);
+				}
+			} catch (Exception e2) {
+				try {
+					if (is.equals(null)) {
+						is = this.getClass().getClassLoader().getResourceAsStream("main/resources/images/Houses/" + name + ".svg");
+						loadImage(is);
+					}
+				} catch (Exception e3) {
+					Logger.warn("Could not load a house image");
 				}
 			}
-			if (file.exists()) {
-				loadImage(url);
-			}
-		} catch (Exception e) {
-			Logger.warn("Could not find file " + name);
-			e.printStackTrace();
 		}
 	}
 	

@@ -1,8 +1,16 @@
 package main.java.Game.Utils;
 
+import java.net.URI;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
 import javafx.geometry.HPos;
@@ -12,12 +20,13 @@ import main.java.Game.Activities.Activity;
 import main.java.Game.Character.SkillsTable;
 import main.java.Game.Jobs.Job;
 
-public abstract class Utils {
+public class Utils {
 
 	public static final int UNINITIATED_MEMORY = 0;
 	public static final String RES_URL = "src/main/resources";
 	private static final double WAGE_CONST = 5;
 	private static final double WAGE_FACTOR = 0.03;
+	public static SoundSystem ss = new SoundSystem();
 
 	public static int[] arrayRandomTotalAllocation(int length, int total) {
 		// Returns an integer array of length length with randomly assigned integers
@@ -88,8 +97,23 @@ public abstract class Utils {
 	}
 	
 	public static String removeWAV(String file) {
+		int sub = file.lastIndexOf("/");
+		file = file.substring(sub+1, file.length());
 		return file.substring(0,file.length() - 4);
 	}
 	
+	public static List<Path> getPathsFromResourceJAR(String folder) {
+		System.out.println(folder);
+		List<Path> paths = null;
+		try {
+			String jarPath = Utils.class.getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+			URI uri = URI.create("jar:file" + jarPath);
+			FileSystem fs = FileSystems.newFileSystem(uri, Collections.emptyMap());
+			paths = Files.walk(fs.getPath(folder)).filter(Files::isRegularFile).collect(Collectors.toList());
+		} catch (Exception e) {
+			System.out.println("Problem with JAR Navigator");
+		}
+		return paths;
+	}
 	
 }

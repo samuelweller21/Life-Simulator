@@ -3,6 +3,8 @@ package main.java.Game.Items;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.Optional;
 
@@ -22,7 +24,32 @@ public class Items {
 	public static ObservableList<Item> global = FXCollections.observableArrayList();
 	
 	public void addAsNamedList(String name) {
-		addFromURL(Utils.RES_URL + "/ItemLists/" + name + ".csv");
+		try {
+			InputStream is = this.getClass().getClassLoader().getResourceAsStream("main/resources/Items/" + name + ".csv");
+			addFromInputStream(is);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void addFromInputStream(InputStream is) {
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			String row;
+			while ((row = reader.readLine()) != null) {
+				String[] data = row.split(",");
+				if (data[0].equals("Name")) {
+					continue;
+				} else {
+					Item item = new Item(data[0], Double.parseDouble(data[1]), Integer.parseInt(data[2]));
+					itemsProp.add(item);
+				}
+			}
+			reader.close();
+		} catch (Exception e) {
+			Logger.warn("Failed reading a item list");
+			e.printStackTrace();
+		} 
 	}
 	
 	public void addFromURL(String url) {
@@ -49,12 +76,37 @@ public class Items {
 				Logger.warn("Failed reading a item list - " + url);
 				e.printStackTrace();
 			} 
-			
 		}
 	}
 	
 	public static void addToGlobalAsNamedList(String name) {
-		addToGlobalFromURL(Utils.RES_URL + "/ItemLists/" + name + ".csv");
+		try {
+			InputStream is = Utils.class.getClassLoader().getResourceAsStream("main/resources/Items/" + name + ".csv");
+			Items.addToGlobalFromStream(is);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void addToGlobalFromStream(InputStream is) {
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			String row;
+			while ((row = reader.readLine()) != null) {
+				String[] data = row.split(",");
+				if (data[0].equals("Name")) {
+					continue;
+				} else {
+					Item item = new Item(data[0], Double.parseDouble(data[1]), Integer.parseInt(data[2]));
+					Items.addToGlobal(item);
+				}
+			}
+			reader.close();
+			
+		} catch (Exception e) {
+			Logger.warn("Failed reading a item list - ");
+			e.printStackTrace();
+		} 
 	}
 	
 	public static void addToGlobalFromURL(String url) {

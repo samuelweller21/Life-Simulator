@@ -3,14 +3,14 @@ package main.java.Game.House;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import main.java.Game.Jobs.Job;
 import main.java.Game.Utils.Logger;
-import main.java.Game.Utils.Utils;
 
 public class Houses {
 
@@ -23,7 +23,12 @@ public class Houses {
 		public static ObservableList<House> global = FXCollections.observableArrayList();
 		
 		public void addAsNamedList(String name) {
-			addFromURL(Utils.RES_URL + "/HouseLists/" + name + ".csv");
+			try {
+				InputStream is = this.getClass().getClassLoader().getResourceAsStream("main/resources/Houses/" + name + ".csv");
+				getHousesFromInputStream(is);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		public void addFromURL(String url) {
@@ -60,8 +65,66 @@ public class Houses {
 			}
 		}
 		
+		public void getHousesFromInputStream(InputStream is) {
+			House house;
+			try {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+				String row;
+				reader.readLine();
+				while ((row = reader.readLine()) != null) {
+					String[] data = row.split(",");
+					if (data[0].equals("Name")) {
+						continue;
+					} else {
+						if (data[2].equals("NA")) {
+							house = new House(data[0], Double.parseDouble(data[1]));
+						} else {
+							house = new House(data[0], Double.parseDouble(data[1]), true);
+						}
+						houses.add(house);
+					}
+				}
+				reader.close();
+			} catch (Exception e) {
+				Logger.warn("Failed reading a house list - ");
+				e.printStackTrace();
+			} 
+		}
+		
 		public void addToGlobalAsNamedList(String name) {
-			addToGlobalFromURL(Utils.RES_URL + "/HouseLists/" + name + ".csv");
+			try {
+				InputStream is = this.getClass().getClassLoader().getResourceAsStream("main/resources/Houses/" + name + ".csv");
+				Houses.addToGlobalAsStream(is);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public static void addToGlobalAsStream(InputStream is) {
+			House house;
+			try {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+				String row;
+				reader.readLine();
+				while ((row = reader.readLine()) != null) {
+					String[] data = row.split(",");
+					if (data[0].equals("Name")) {
+						continue;
+					} else {
+						if (data[2].equals("NA")) {
+							house = new House(data[0], Double.parseDouble(data[1]), true);
+						} else {
+							house = new House(data[0], Double.parseDouble(data[1]));
+							house.loadImage(data[2]);
+						}
+						Houses.addToGlobal(house);
+					}
+				}
+				reader.close();
+			} catch (Exception e) {
+				Logger.warn("Failed reading a item list - ");
+				e.printStackTrace();
+			} 
 		}
 		
 		public void addToGlobalFromURL(String url) {
@@ -87,7 +150,7 @@ public class Houses {
 								house = new House(data[0], Double.parseDouble(data[1]));
 								house.loadImage(data[2]);
 							}
-							addToGlobal(house);
+							Houses.addToGlobal(house);
 						}
 					}
 					reader.close();
